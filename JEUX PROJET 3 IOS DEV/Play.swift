@@ -115,7 +115,7 @@ class Play{
         var team_who_receive: Int = 0 //select team who's recieving damages
         var team_choice: Int = 0 //for choosing team initialize
         
-        
+        //you can select a team who bigin the fight, (maybe random in next version)
         print("Select a team ")
         print("1 - \(teams[0].name)")
         print("2 - \(teams[1].name)")
@@ -132,14 +132,14 @@ class Play{
             var reciver_caracter: Character   // Character who recive
             
             if team_choice == 1 {
-                // change var team who fight and recieve
+                // change var team who fight and recieve 1 or 0
                 team_who_fight = 0
                 team_who_receive = 1
                 
                 print("You have selected team : \(teams[team_who_fight].name)")
             
             }else if team_choice == 2 {
-                // change var team who fight and recieve
+                // change var team who fight and recieve 1 or 0
                 team_who_fight = 1
                 team_who_receive = 0
                 
@@ -157,15 +157,15 @@ class Play{
             } while choice != 1 && choice != 2 && choice != 3
             
             
-            
+            //put the character who's choosen in var
             figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
             print("charcater choosen : \(figther_caracter.type)")
             
+            // if magus then select a team character to heal
             if let magus = figther_caracter as? Magus {
-                // if magus then select a team character to heal
                 
                 print("You can choose a character to heal from your team :")
-                
+                //select a character to heal
                 teams[team_who_fight].characters_display()
                 
                 repeat {
