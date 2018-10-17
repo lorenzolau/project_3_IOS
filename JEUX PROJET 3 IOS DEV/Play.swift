@@ -126,25 +126,28 @@ class Play{
             
         } while team_choice != 1 && team_choice != 2
         
+        if team_choice == 1 {
+            // change var team who fight and recieve 1 or 0
+            team_who_fight = 0
+            team_who_receive = 1
+            
+            print("You have selected team : \(teams[team_who_fight].name)")
+            print("Discover the list :")
+            
+        }else if team_choice == 2 {
+            // change var team who fight and recieve 1 or 0
+            team_who_fight = 1
+            team_who_receive = 0
+            
+            print("You have selected team : \(teams[team_who_fight].name)")
+            print("Discover the list :")
+            
+        }
+        
         repeat{
            
             var figther_caracter: Character      // Character who fight
             var reciver_caracter: Character   // Character who recive
-            
-            if team_choice == 1 {
-                // change var team who fight and recieve 1 or 0
-                team_who_fight = 0
-                team_who_receive = 1
-                
-                print("You have selected team : \(teams[team_who_fight].name)")
-            
-            }else if team_choice == 2 {
-                // change var team who fight and recieve 1 or 0
-                team_who_fight = 1
-                team_who_receive = 0
-                
-                print("You have selected team : \(teams[team_who_fight].name)")
-            }
             
             //call function to display character in team who is choosen
             teams[team_who_fight].characters_display()
@@ -163,7 +166,8 @@ class Play{
             
             // if magus then select a team character to heal
             if let magus = figther_caracter as? Magus {
-                
+                // condition when magus is alive
+                if magus.life > 0 {
                 print("You can choose a character to heal from your team :")
                 //select a character to heal
                 teams[team_who_fight].characters_display()
@@ -178,7 +182,11 @@ class Play{
                 reciver_caracter = teams[team_who_fight].characters_in_team[choice-1]
                 
                 magus.healing(who: reciver_caracter)
-                
+                }
+                else{
+                    print("You cannot choose a dead character!")
+                    
+                }
                 
             }else{
                 // else select a oponent
@@ -194,17 +202,30 @@ class Play{
                     
                 } while choice != 1 && choice != 2 && choice != 3
                 
-                
+                //put the choice in var reciver_caracter
                 reciver_caracter = teams[team_who_receive].characters_in_team[choice-1]
                 
+                //if a dead character is choosen, tell to the gamer : impossible to use it
+                if figther_caracter.life > 0 &&  reciver_caracter.life > 0{
+                    
+                //call attack function and begin the fight between 2 choosen characters
                 figther_caracter.attack(who: reciver_caracter)
+                    
+                }
+                else{
+                    print("You cannot choose a dead character!")
+                }
             }
             
             //select other team
             if team_choice == 1 {
                 team_choice = 2
+                team_who_fight = 0
+                team_who_receive = 1
             }else if team_choice == 2 {
                 team_choice = 1
+                team_who_fight = 1
+                team_who_receive = 0
             }
 
             
