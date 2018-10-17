@@ -36,7 +36,7 @@ class Play{
         var teamname = "" //name of the team
         let team = Team()
         var characters = [Character]() //character list in array
-        
+        //let characters_definiton = Combattant()
         
         print("Input your team name n°\(tnb)")
     repeat{
@@ -169,7 +169,7 @@ class Play{
             else{
                 print("You cannot choose a dead character! Choose another")
             }
-            print("charcater choosen : \(figther_caracter.type)")
+            print("charcater choosen : \(figther_caracter.name)")
             
             // if magus then select a team character to heal, he cannot attack
             if let magus = figther_caracter as? Magus {

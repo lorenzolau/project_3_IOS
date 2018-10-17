@@ -23,16 +23,17 @@ class Team {
             
             if character_disp.check_caracter_life() {
                 if character_disp.type == .Magus {
-                    type_of_spell = "Heal"
+                    type_of_spell = "Heal for \(character_disp.weapon.heal) life points"
                 } else {
-                    type_of_spell = "Damage"
+                    type_of_spell = "Deal \(character_disp.weapon.damage) damages"
                 }
                 
-                print("N°\(i + 1) - " + character_disp.type.rawValue + " "
-                    + character_disp.name + " his life is : \(character_disp.life) - Type :  " + type_of_spell)
+                print("N°\(i + 1) - \(character_disp.name) is a \(character_disp.type) of type \(character_disp.type.rawValue)"
+                    
+                + "he has : \(character_disp.life) life, he can \(type_of_spell)")
                 
             } else {
-                print("N°\(i + 1) - " + character_disp.type.rawValue + " " + character_disp.name + " is dead")
+                print("Character N°\(i + 1) - " + character_disp.type.rawValue + " " + character_disp.name + " is dead")
             }
         }
        
