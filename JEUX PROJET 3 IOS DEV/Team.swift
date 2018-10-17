@@ -32,7 +32,7 @@ class Team {
                     + character_disp.name + " his life is : \(character_disp.life) - Type :  " + type_of_spell)
                 
             } else {
-                print("\(i + 1) - " + character_disp.type.rawValue + character_disp.name + " is dead")
+                print("N°\(i + 1) - " + character_disp.type.rawValue + " " + character_disp.name + " is dead")
             }
         }
        

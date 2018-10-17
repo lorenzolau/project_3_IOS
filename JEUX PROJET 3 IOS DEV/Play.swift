@@ -15,7 +15,6 @@ class Play{
     var character_not_double = [String]() //array with characters
     var choice = 0 //player choice
     var characterName = "" //character name
-    var bool: Bool = true
     
     func play(){
        
@@ -110,11 +109,11 @@ class Play{
         }
         //fighting function
     func fight(){
-        
         var team_who_fight: Int = 0 //select team who's fighting
         var team_who_receive: Int = 0 //select team who's recieving damages
         var team_choice: Int = 0 //for choosing team initialize
-        
+        var bool: Bool = true //booléan var for repeat the fight
+        var lifecheck: Int = 0
         //you can select a team who bigin the fight, (maybe random in next version)
         print("Select a team ")
         print("1 - \(teams[0].name)")
@@ -153,6 +152,7 @@ class Play{
             teams[team_who_fight].characters_display()
             
             print("Select a Character from team : \(teams[team_who_fight].name) ")
+           
             repeat {
                 let read = Read()
                 choice = read.ReadInt()
@@ -162,9 +162,16 @@ class Play{
             
             //put the character who's choosen in var
             figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
+            
+            if figther_caracter.life > 0{
+                lifecheck = 1
+            }
+            else{
+                print("You cannot choose a dead character! Choose another")
+            }
             print("charcater choosen : \(figther_caracter.type)")
             
-            // if magus then select a team character to heal
+            // if magus then select a team character to heal, he cannot attack
             if let magus = figther_caracter as? Magus {
                 // condition when magus is alive
                 if magus.life > 0 {
@@ -185,7 +192,6 @@ class Play{
                 }
                 else{
                     print("You cannot choose a dead character!")
-                    
                 }
                 
             }else{
@@ -200,21 +206,16 @@ class Play{
                     let read = Read()
                     choice = read.ReadInt()
                     
-                } while choice != 1 && choice != 2 && choice != 3
-                
+                } while choice != 1 && choice != 2 && choice != 3 && lifecheck != 1
                 //put the choice in var reciver_caracter
                 reciver_caracter = teams[team_who_receive].characters_in_team[choice-1]
                 
                 //if a dead character is choosen, tell to the gamer : impossible to use it
-                if figther_caracter.life > 0 &&  reciver_caracter.life > 0{
-                    
-                //call attack function and begin the fight between 2 choosen characters
-                figther_caracter.attack(who: reciver_caracter)
-                    
-                }
-                else{
-                    print("You cannot choose a dead character!")
-                }
+                
+                    //call attack function and begin the fight between 2 choosen characters
+                    figther_caracter.attack(who: reciver_caracter)
+                
+                
             }
             
             //select other team
@@ -227,9 +228,16 @@ class Play{
                 team_who_fight = 1
                 team_who_receive = 0
             }
-
             
-        }while  bool
+            if !(teams[team_who_receive].check_life()){
+                print("All the characters in team \(teams[team_who_receive].name) are dead ! \(teams[team_who_fight].name) has won! Congrats")
+                bool = false
+            }else if !(teams[team_who_fight].check_life()){
+                print("All the characters in team \(teams[team_who_fight].name) are dead ! \(teams[team_who_receive].name) has won! Congrats")
+                bool = false
+            }
+            
+        }while  bool == true
         
         
     }

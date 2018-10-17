@@ -11,10 +11,10 @@ import Foundation
 // Create characters
 
 enum Typeofcharacter: String {
-    case Magus = "Magus"
-    case Combattant = "Figther"
-    case Colosse = "Colosse"
-    case Dwarf = "Dwarf"
+    case Magus = "frost"
+    case Combattant = "human"
+    case Colosse = "rock"
+    case Dwarf = "elf"
 }
 
 class Character {
@@ -42,6 +42,7 @@ class Character {
     func attack(who: Character) {
         
         who.life -= weapon.damage
+        
         if who.life < 0 {
             who.life = 0
         }
@@ -51,7 +52,7 @@ class Character {
             if who.check_caracter_life() {
                 print(name + " hit " + who.name)
                 
-                who.life = max(who.life - weapon.damage, 0)
+                print(who.life = max(who.life - weapon.damage, 0))
                 
                 if who.life <= 0 {
                     print(who.name + " is defeted")
