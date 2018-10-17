@@ -7,7 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		980038502154C44200493EE9 /* Play.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9800384F2154C44200493EE9 /* Play.swift */; };
 		98E49620214BD95E00596431 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4961F214BD95E00596431 /* main.swift */; };
+		98E4962721510DB600596431 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4962621510DB600596431 /* Team.swift */; };
+		98E4962921510DC700596431 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4962821510DC700596431 /* Character.swift */; };
+		98E4962B2151153F00596431 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4962A2151153F00596431 /* Weapon.swift */; };
+		98E4962D2152A9BE00596431 /* Magus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4962C2152A9BE00596431 /* Magus.swift */; };
+		98E4962F2152A9D100596431 /* Combattant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4962E2152A9D100596431 /* Combattant.swift */; };
+		98E496312152AA7B00596431 /* Dwarf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E496302152AA7B00596431 /* Dwarf.swift */; };
+		98E496332152ABCE00596431 /* Colosse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E496322152ABCE00596431 /* Colosse.swift */; };
+		98E496352152B96100596431 /* Sword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E496342152B96100596431 /* Sword.swift */; };
+		98E496372152B9FF00596431 /* Stick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E496362152B9FF00596431 /* Stick.swift */; };
+		98E496392152BA2F00596431 /* Hax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E496382152BA2F00596431 /* Hax.swift */; };
+		98E4963B2152BC0100596431 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4963A2152BC0100596431 /* Hand.swift */; };
+		98E4963D2152C22500596431 /* Read.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4963C2152C22500596431 /* Read.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +36,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9800384F2154C44200493EE9 /* Play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Play.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Play.swift"; sourceTree = "<absolute>"; };
 		98E4961C214BD95E00596431 /* JEUX PROJET 3 IOS DEV */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "JEUX PROJET 3 IOS DEV"; sourceTree = BUILT_PRODUCTS_DIR; };
-		98E4961F214BD95E00596431 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		98E4961F214BD95E00596431 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/main.swift"; sourceTree = "<absolute>"; };
+		98E4962621510DB600596431 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Team.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Team.swift"; sourceTree = "<absolute>"; };
+		98E4962821510DC700596431 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Character.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Characters/Character.swift"; sourceTree = "<absolute>"; };
+		98E4962A2151153F00596431 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Weapon.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Weapons/Weapon.swift"; sourceTree = "<absolute>"; };
+		98E4962C2152A9BE00596431 /* Magus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Magus.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Characters/Magus.swift"; sourceTree = "<absolute>"; };
+		98E4962E2152A9D100596431 /* Combattant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Combattant.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Characters/Combattant.swift"; sourceTree = "<absolute>"; };
+		98E496302152AA7B00596431 /* Dwarf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Dwarf.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Characters/Dwarf.swift"; sourceTree = "<absolute>"; };
+		98E496322152ABCE00596431 /* Colosse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Colosse.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Characters/Colosse.swift"; sourceTree = "<absolute>"; };
+		98E496342152B96100596431 /* Sword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Sword.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Weapons/Sword.swift"; sourceTree = "<absolute>"; };
+		98E496362152B9FF00596431 /* Stick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Stick.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Weapons/Stick.swift"; sourceTree = "<absolute>"; };
+		98E496382152BA2F00596431 /* Hax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Hax.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Weapons/Hax.swift"; sourceTree = "<absolute>"; };
+		98E4963A2152BC0100596431 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Hand.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Weapons/Hand.swift"; sourceTree = "<absolute>"; };
+		98E4963C2152C22500596431 /* Read.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Read.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Read.swift"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +64,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		98BBF0D3216FCFE700B00BD1 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				98E4962821510DC700596431 /* Character.swift */,
+				98E4962E2152A9D100596431 /* Combattant.swift */,
+				98E4962C2152A9BE00596431 /* Magus.swift */,
+				98E496302152AA7B00596431 /* Dwarf.swift */,
+				98E496322152ABCE00596431 /* Colosse.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		98BBF0D4216FD02300B00BD1 /* Weapons */ = {
+			isa = PBXGroup;
+			children = (
+				98E4962A2151153F00596431 /* Weapon.swift */,
+				98E496342152B96100596431 /* Sword.swift */,
+				98E496362152B9FF00596431 /* Stick.swift */,
+				98E496382152BA2F00596431 /* Hax.swift */,
+				98E4963A2152BC0100596431 /* Hand.swift */,
+			);
+			name = Weapons;
+			path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Weapons";
+			sourceTree = "<absolute>";
+		};
 		98E49613214BD95E00596431 = {
 			isa = PBXGroup;
 			children = (
@@ -57,7 +108,12 @@
 		98E4961E214BD95E00596431 /* JEUX PROJET 3 IOS DEV */ = {
 			isa = PBXGroup;
 			children = (
+				98BBF0D4216FD02300B00BD1 /* Weapons */,
+				98BBF0D3216FCFE700B00BD1 /* Characters */,
 				98E4961F214BD95E00596431 /* main.swift */,
+				98E4963C2152C22500596431 /* Read.swift */,
+				98E4962621510DB600596431 /* Team.swift */,
+				9800384F2154C44200493EE9 /* Play.swift */,
 			);
 			path = "JEUX PROJET 3 IOS DEV";
 			sourceTree = "<group>";
@@ -94,6 +150,7 @@
 				TargetAttributes = {
 					98E4961B214BD95E00596431 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -119,7 +176,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98E496332152ABCE00596431 /* Colosse.swift in Sources */,
+				98E4962F2152A9D100596431 /* Combattant.swift in Sources */,
+				98E4962921510DC700596431 /* Character.swift in Sources */,
+				98E4962B2151153F00596431 /* Weapon.swift in Sources */,
+				98E496392152BA2F00596431 /* Hax.swift in Sources */,
+				98E496372152B9FF00596431 /* Stick.swift in Sources */,
+				98E4962D2152A9BE00596431 /* Magus.swift in Sources */,
+				98E4962721510DB600596431 /* Team.swift in Sources */,
+				98E4963B2152BC0100596431 /* Hand.swift in Sources */,
+				98E496312152AA7B00596431 /* Dwarf.swift in Sources */,
+				98E4963D2152C22500596431 /* Read.swift in Sources */,
+				980038502154C44200493EE9 /* Play.swift in Sources */,
 				98E49620214BD95E00596431 /* main.swift in Sources */,
+				98E496352152B96100596431 /* Sword.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +314,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -253,7 +323,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
