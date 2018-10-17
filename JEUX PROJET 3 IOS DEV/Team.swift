@@ -11,18 +11,14 @@ import Foundation
 class Team {
     var name = "" //name of the team
     var characters_in_team = [Character]() //character in array
-
+    var type_of_spell: String = "" // fighting type
     
-    var type_of_spell: String = ""
-    
-    // display and character choice
-    
-    
+    // function who display characters
     func characters_display(){
         
         for i in 0..<characters_in_team.count{
             
-            //character constant in for character in team
+            //character constant for listing character in team
             let character_disp: Character = characters_in_team[i]
             
             if character_disp.check_caracter_life() {
@@ -32,8 +28,8 @@ class Team {
                     type_of_spell = "Damage"
                 }
                 
-                print("\(i + 1) - " + character_disp.type.rawValue + " "
-                    + character_disp.name + " - Life : \(character_disp.life) - Object :  " + type_of_spell)
+                print("N°\(i + 1) - " + character_disp.type.rawValue + " "
+                    + character_disp.name + " his life is : \(character_disp.life) - Type :  " + type_of_spell)
                 
             } else {
                 print("\(i + 1) - " + character_disp.type.rawValue + character_disp.name + " is dead")

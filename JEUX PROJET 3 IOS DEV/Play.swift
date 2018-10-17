@@ -108,42 +108,47 @@ class Play{
         
       
         }
-        
+        //fighting function
     func fight(){
         
-        var team_who_fight: Int = 0
-        var team_who_receive: Int = 0
+        var team_who_fight: Int = 0 //select team who's fighting
+        var team_who_receive: Int = 0 //select team who's recieving damages
+        var team_choice: Int = 0 //for choosing team initialize
+        
+        
+        print("Select a team ")
+        print("1 - \(teams[0].name)")
+        print("2 - \(teams[1].name)")
+        
+        repeat {
+            let read = Read()
+            team_choice = read.ReadInt()
+            
+        } while team_choice != 1 && team_choice != 2
+        
         repeat{
-            // fonction choisir le joueur
            
             var figther_caracter: Character      // Character who fight
             var reciver_caracter: Character   // Character who recive
             
-            
-            
-            print("Select a team ")
-            print("1 - \(teams[0].name)")
-            print("2 - \(teams[1].name)")
-            
-            repeat {
-                let read = Read()
-                choice = read.ReadInt()
-                
-            } while choice != 1 && choice != 2
-            
-            if choice == 1 {
+            if team_choice == 1 {
+                // change var team who fight and recieve
                 team_who_fight = 0
                 team_who_receive = 1
+                
                 print("You have selected team : \(teams[team_who_fight].name)")
             
-            }else if choice == 2 {
+            }else if team_choice == 2 {
+                // change var team who fight and recieve
                 team_who_fight = 1
                 team_who_receive = 0
                 
                 print("You have selected team : \(teams[team_who_fight].name)")
             }
             
+            //call function to display character in team who is choosen
             teams[team_who_fight].characters_display()
+            
             print("Select a Character from team : \(teams[team_who_fight].name) ")
             repeat {
                 let read = Read()
@@ -154,7 +159,7 @@ class Play{
             
             
             figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
-            print("charcater choosen :  - \(figther_caracter)")
+            print("charcater choosen : \(figther_caracter.type)")
             
             if let magus = figther_caracter as? Magus {
                 // if magus then select a team character to heal
@@ -178,11 +183,12 @@ class Play{
             }else{
                 // else select a oponent
                 
-                print("You can choose a character to hit from your team \(teams[team_who_receive].name):")
+                print("You can choose a character to hit from oposent team \(teams[team_who_receive].name):")
                 
                 teams[team_who_receive].characters_display()
                 
                 repeat {
+                    
                     let read = Read()
                     choice = read.ReadInt()
                     
@@ -192,19 +198,19 @@ class Play{
                 reciver_caracter = teams[team_who_receive].characters_in_team[choice-1]
                 
                 figther_caracter.attack(who: reciver_caracter)
-                
-                
-                
-                
             }
-    
+            
+            //select other team
+            if team_choice == 1 {
+                team_choice = 2
+            }else if team_choice == 2 {
+                team_choice = 1
+            }
+
             
         }while  bool
         
         
-    }
-    
-    func choice_team(){
     }
 }
 

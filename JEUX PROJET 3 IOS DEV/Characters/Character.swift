@@ -49,11 +49,11 @@ class Character {
         if self.check_caracter_life() {
             // Character to attack alive ?
             if who.check_caracter_life() {
-                print(name + " fight " + who.name)
+                print(name + " hit " + who.name)
                 
                 who.life = max(who.life - weapon.damage, 0)
                 
-                if who.life == 0 {
+                if who.life <= 0 {
                     print(who.name + " is defeted")
                 } else {
                     print(who.name + " loose \(weapon.damage) life")
