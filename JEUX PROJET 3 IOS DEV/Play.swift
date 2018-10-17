@@ -159,16 +159,27 @@ class Play{
                 
             } while choice != 1 && choice != 2 && choice != 3
             
-            
             //put the character who's choosen in var
             figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
             
-            if figther_caracter.life > 0{
-                lifecheck = 1
-            }
-            else{
-                print("You cannot choose a dead character! Choose another")
-            }
+            repeat {
+                if figther_caracter.life > 0{
+                    lifecheck = 1
+                }
+                else{
+                    print("You cannot choose a dead character! Choose another")
+                    repeat {
+                        let read = Read()
+                        choice = read.ReadInt()
+                    } while choice != 1 && choice != 2 && choice != 3
+                    
+                    
+                    //put the character who's choosen in var
+                    figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
+                    
+                }
+            } while figther_caracter.life <= 0
+            
             print("charcater choosen : \(figther_caracter.name)")
             
             // if magus then select a team character to heal, he cannot attack
@@ -220,15 +231,17 @@ class Play{
             
             //select other team
             if team_choice == 1 {
+                
                 team_choice = 2
-                team_who_fight = 0
-                team_who_receive = 1
-            }else if team_choice == 2 {
-                team_choice = 1
                 team_who_fight = 1
                 team_who_receive = 0
+            }else if team_choice == 2 {
+              
+                team_choice = 1
+                team_who_fight = 0
+                team_who_receive = 1
             }
-            
+            //check team life if all characters are dead return false and exit while
             if !(teams[team_who_receive].check_life()){
                 print("All the characters in team \(teams[team_who_receive].name) are dead ! \(teams[team_who_fight].name) has won! Congrats")
                 bool = false
