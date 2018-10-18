@@ -11,22 +11,22 @@ import Foundation
 // Create characters
 
 enum Typeofcharacter: String {
-    case Magus = "frost"
+    case Magus = "elf"
     case Combattant = "human"
     case Colosse = "rock"
-    case Dwarf = "elf"
+    case Dwarf = "humann"
 }
 
 class Character {
     
     let name: String
     var weapon: Weapon
-    var life: Int
-    let max_life: Int
+    var life: Decimal
+    let max_life: Decimal
     var armor: Int
     var type: Typeofcharacter
     
-    init(name: String, weapon: Weapon, armor: Int,type: Typeofcharacter, max_life: Int) {
+    init(name: String, weapon: Weapon, armor: Int,type: Typeofcharacter, max_life: Decimal) {
         self.name = name
         self.weapon = weapon
         self.armor = armor
@@ -40,8 +40,48 @@ class Character {
 
     
     func attack(who: Character) {
+        //a random number for crit attack 1/10 chance
+        let number_crit = Int.random(in: 1 ... 10)
+        var attack_factor: Decimal = 1.0
+         //types :
+        //human vs rock
+        print("Type \(type.rawValue) vs type \(who.type.rawValue)")
         
-        who.life -= weapon.damage
+        if type.rawValue == "human" && who.type.rawValue == "rock"{
+            attack_factor = attack_factor/3
+          }
+        //human vs elf
+        if type.rawValue == "human" && who.type.rawValue == "elf"{
+            attack_factor = attack_factor * 1
+        }
+        //rock vs human
+        if type.rawValue == "rock" && who.type.rawValue == "human"{
+            attack_factor = attack_factor*1.5
+          }
+        //rock vs elf
+        if type.rawValue == "rock" && who.type.rawValue == "elf"{
+            attack_factor = attack_factor*1.8
+         }
+        //elf vs rock
+        if type.rawValue == "elf" && who.type.rawValue == "rock"{
+            attack_factor = attack_factor/1.5
+          }
+        //elf vs human
+        if type.rawValue == "elf" && who.type.rawValue == "human"{
+            attack_factor = attack_factor*1.2
+        }
+        print("attack factor : \(attack_factor)")
+        
+        //if crit
+        //let decimalToInt = NSDecimalNumber(decimal: attack_factor).intValue
+        
+        if number_crit == 1{
+            weapon.damage = (weapon.damage)*2
+            who.life = who.life - (weapon.damage * attack_factor)
+            print("your attack has crit !!")
+        }else{
+            who.life = who.life - (weapon.damage * attack_factor)
+        }
         
         if who.life < 0 {
             who.life = 0
@@ -51,8 +91,8 @@ class Character {
             // Character to attack alive ?
             if who.check_caracter_life() {
                 print(name + " hit " + who.name)
-                
-                print(who.life = max(who.life - weapon.damage, 0))
+                //if oponent life < 0 then life = 0
+                who.life = max(who.life, 0)
                 
                 if who.life <= 0 {
                     print(who.name + " is defeted")

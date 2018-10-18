@@ -10,10 +10,10 @@ import Foundation
 
 class Weapon {
     
-    var damage: Int
-    var heal: Int
+    var damage: Decimal
+    var heal: Decimal
     
-    init(damage: Int, heal: Int) {
+    init(damage: Decimal, heal: Decimal) {
         self.damage = damage
         self.heal = heal
     }
