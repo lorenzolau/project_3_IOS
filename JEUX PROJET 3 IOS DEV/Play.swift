@@ -51,10 +51,10 @@ class Play{
       
         
         print("Select character n°\(i)")
-        print("1 - Figther")
-        print("2 - Magus")
-        print("3 - Dwarf")
-        print("4 - Colosse")
+        print("1 - Figther (use a Sword who deals 10 damages and his type is human, he has  100 life)")
+        print("2 - Magus (use a stick who heals for 10 life points and his type is an elf, he has 55 life)")
+        print("3 - Dwarf (use a Hax who deals 18 damages, his type is human, he has 65 life")
+        print("4 - Colosse (use his hands who deals 6 damages, his type is rock, he has 150 life)")
         
         repeat {
             let read = Read()
@@ -112,8 +112,9 @@ class Play{
         var team_who_fight: Int = 0 //select team who's fighting
         var team_who_receive: Int = 0 //select team who's recieving damages
         var team_choice: Int = 0 //for choosing team initialize
-        var bool: Bool = true //booléan var for repeat the fight
-        var lifecheck: Int = 0
+        var bool: Bool = true //boolean var for repeat the fight
+        var lifecheck: Int = 0 //use for bigening the fight and never choose a dead character
+        
         //you can select a team who bigin the fight, (maybe random in next version)
         print("Select a team ")
         print("1 - \(teams[0].name)")
@@ -162,6 +163,7 @@ class Play{
             //put the character who's choosen in var
             figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
             
+            //repeat here the choice if character choosen is dead
             repeat {
                 if figther_caracter.life > 0{
                     lifecheck = 1
@@ -178,13 +180,13 @@ class Play{
                     figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
                     
                 }
-            } while figther_caracter.life <= 0
+            } while lifecheck != 1
             
             print("charcater choosen : \(figther_caracter.name)")
             
             // if magus then select a team character to heal, he cannot attack
             if let magus = figther_caracter as? Magus {
-                // condition when magus is alive
+                // check if magus is alive
                 if magus.life > 0 {
                 print("You can choose a character to heal from your team :")
                 //select a character to heal
@@ -217,13 +219,32 @@ class Play{
                     let read = Read()
                     choice = read.ReadInt()
                     
-                } while choice != 1 && choice != 2 && choice != 3 && lifecheck != 1
+                } while choice != 1 && choice != 2 && choice != 3
                 //put the choice in var reciver_caracter
                 reciver_caracter = teams[team_who_receive].characters_in_team[choice-1]
                 
                 //if a dead character is choosen, tell to the gamer : impossible to use it
+                //repeat here the choice if character choosen is dead
+                repeat {
+                    if reciver_caracter.life > 0{
+                        lifecheck = 1
+                    }
+                    else{
+                        print("You cannot choose a dead character! Choose another")
+                        repeat {
+                            let read = Read()
+                            choice = read.ReadInt()
+                        } while choice != 1 && choice != 2 && choice != 3
+                        
+                        
+                        //put the character who's choosen in var
+                        reciver_caracter = teams[team_who_fight].characters_in_team[choice-1]
+                        
+                    }
+                } while lifecheck != 1
                 
-                    //call attack function and begin the fight between 2 choosen characters
+                
+                    //call attack function in class Character and begin the fight between 2 choosen characters
                     figther_caracter.attack(who: reciver_caracter)
                 
                 
