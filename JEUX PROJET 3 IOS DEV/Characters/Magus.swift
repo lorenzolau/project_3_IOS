@@ -12,7 +12,7 @@ class Magus: Character {
     
 
     init(name: String) {
-        super.init(name: name, weapon: Stick(), armor: 25,type: Typeofcharacter.Magus, max_life: 55)
+        super.init(name: name, weapon: Stick(), crit: 20,type: Typeofcharacter.Magus, max_life: 55)
     }
     
     func healing(who: Character) {

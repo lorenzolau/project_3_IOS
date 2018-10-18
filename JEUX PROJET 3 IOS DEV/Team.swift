@@ -30,7 +30,7 @@ class Team {
                 
                 print("N°\(i + 1) - \(character_disp.name) is a \(character_disp.type) of type \(character_disp.type.rawValue)"
                     
-                + "he has : \(character_disp.life) life, he can \(type_of_spell)")
+                + " he has : \(character_disp.life) life, he can \(type_of_spell)")
                 
             } else {
                 print("Character N°\(i + 1) - " + character_disp.type.rawValue + " " + character_disp.name + " is dead")
