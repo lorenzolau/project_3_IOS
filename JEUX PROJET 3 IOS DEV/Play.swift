@@ -188,6 +188,7 @@ class Play{
           
             // if magus then select a team character to heal, he cannot attack
             if let magus = figther_caracter as? Magus {
+                // if random is true then change weapon
                 if random_chest == 5 {
                     print("A new weapon is for you :  \(figther_caracter.name)")
                     figther_caracter.weapon = Bigstick()
@@ -206,7 +207,25 @@ class Play{
                 
                 
                 reciver_caracter = teams[team_who_fight].characters_in_team[choice-1]
-                
+                    //boucle while to check if the reciever character is alive
+                    repeat {
+                        if reciver_caracter.life > 0{
+                            lifecheck = 1
+                        }
+                        else{
+                            print("You cannot choose a dead character! Choose another")
+                            repeat {
+                                let read = Read()
+                                choice = read.ReadInt()
+                            } while choice != 1 && choice != 2 && choice != 3
+                            
+                            
+                            //put the character who's choosen in var
+                            reciver_caracter = teams[team_who_fight].characters_in_team[choice-1]
+                            
+                        }
+                    } while lifecheck != 1
+                    
                 magus.healing(who: reciver_caracter)
                 }
                 else{
@@ -214,6 +233,8 @@ class Play{
                 }
                 
             }else{
+                
+                //if random number
                 if random_chest == 5 {
                     print("A new weapon is for you :  \(figther_caracter.name)")
                     figther_caracter.weapon = Mysticweapon()
