@@ -11,10 +11,10 @@ import Foundation
 // Create characters
 
 enum Typeofcharacter: String {
-    case Magus = "elf"
+    case Magus = "healer"
     case Combattant = "human"
     case Colosse = "rock"
-    case Dwarf = "humann"
+    case Dwarf = "elf"
 }
 
 class Character {
@@ -42,33 +42,33 @@ class Character {
     func attack(who: Character) {
         //a random number for crit attack 1/10 chance
         let number_crit = Int.random(in: 1 ... 10)
-        var attack_factor: Decimal = 1.0
+        var attack_factor: Decimal = 1.00
          //types :
         //human vs rock
         print("Type \(type.rawValue) vs type \(who.type.rawValue)")
         
         if type.rawValue == "human" && who.type.rawValue == "rock"{
-            attack_factor = attack_factor/3
+            attack_factor = attack_factor/4.00
           }
         //human vs elf
         if type.rawValue == "human" && who.type.rawValue == "elf"{
-            attack_factor = attack_factor * 1
+            attack_factor = attack_factor * 1.50
         }
         //rock vs human
         if type.rawValue == "rock" && who.type.rawValue == "human"{
-            attack_factor = attack_factor*1.5
+            attack_factor = attack_factor*1.50
           }
         //rock vs elf
         if type.rawValue == "rock" && who.type.rawValue == "elf"{
-            attack_factor = attack_factor*1.8
+            attack_factor = attack_factor*1.80
          }
         //elf vs rock
         if type.rawValue == "elf" && who.type.rawValue == "rock"{
-            attack_factor = attack_factor/1.5
+            attack_factor = attack_factor/2
           }
         //elf vs human
         if type.rawValue == "elf" && who.type.rawValue == "human"{
-            attack_factor = attack_factor*1.2
+            attack_factor = attack_factor/1.20
         }
         print("attack factor : \(attack_factor)")
         
@@ -78,7 +78,7 @@ class Character {
         if number_crit == 1{
             weapon.damage = (weapon.damage)*2
             who.life = who.life - (weapon.damage * attack_factor)
-            print("your attack has crit !!")
+            print("your attack has crit !!!")
         }else{
             who.life = who.life - (weapon.damage * attack_factor)
         }
@@ -97,7 +97,7 @@ class Character {
                 if who.life <= 0 {
                     print(who.name + " is defeted")
                 } else {
-                    print(who.name + " loose \(weapon.damage) life")
+                    print(who.name + " loose \(weapon.damage * attack_factor) life")
                 }
                 
             } else {
