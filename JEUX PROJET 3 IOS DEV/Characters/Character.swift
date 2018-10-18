@@ -43,6 +43,7 @@ class Character {
         //a random number for crit attack 1/10 chance
         let number_crit = Int.random(in: 1 ... 10)
         var attack_factor: Decimal = 1.00
+        var crit_factor: Decimal = 1.00
          //types :
         //human vs rock
         print("Type \(type.rawValue) vs type \(who.type.rawValue)")
@@ -76,7 +77,8 @@ class Character {
         //let decimalToInt = NSDecimalNumber(decimal: attack_factor).intValue
         
         if number_crit == 1{
-            who.life = who.life - (weapon.damage * attack_factor*2)
+            crit_factor = 2
+            who.life = who.life - (weapon.damage * attack_factor * crit_factor)
             print("your attack has crit !!!")
         }else{
             who.life = who.life - (weapon.damage * attack_factor)
@@ -96,7 +98,7 @@ class Character {
                 if who.life <= 0 {
                     print(who.name + " is defeted")
                 } else {
-                    print(who.name + " loose \(weapon.damage * attack_factor) life")
+                    print(who.name + " loose \(weapon.damage * attack_factor * crit_factor) life")
                 }
                 
             } else {
