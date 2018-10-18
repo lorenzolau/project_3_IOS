@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		980038502154C44200493EE9 /* Play.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9800384F2154C44200493EE9 /* Play.swift */; };
+		98B0B2EB21788976006D5EDF /* Bigstick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B0B2EA21788976006D5EDF /* Bigstick.swift */; };
+		98B0B2ED21788994006D5EDF /* Mysticweapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B0B2EC21788994006D5EDF /* Mysticweapon.swift */; };
 		98E49620214BD95E00596431 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4961F214BD95E00596431 /* main.swift */; };
 		98E4962721510DB600596431 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4962621510DB600596431 /* Team.swift */; };
 		98E4962921510DC700596431 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4962821510DC700596431 /* Character.swift */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		9800384F2154C44200493EE9 /* Play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Play.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Play.swift"; sourceTree = "<absolute>"; };
+		98B0B2EA21788976006D5EDF /* Bigstick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bigstick.swift; sourceTree = "<group>"; };
+		98B0B2EC21788994006D5EDF /* Mysticweapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mysticweapon.swift; sourceTree = "<group>"; };
 		98E4961C214BD95E00596431 /* JEUX PROJET 3 IOS DEV */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "JEUX PROJET 3 IOS DEV"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E4961F214BD95E00596431 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/main.swift"; sourceTree = "<absolute>"; };
 		98E4962621510DB600596431 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Team.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Team.swift"; sourceTree = "<absolute>"; };
@@ -84,6 +88,8 @@
 				98E496362152B9FF00596431 /* Stick.swift */,
 				98E496382152BA2F00596431 /* Hax.swift */,
 				98E4963A2152BC0100596431 /* Hand.swift */,
+				98B0B2EA21788976006D5EDF /* Bigstick.swift */,
+				98B0B2EC21788994006D5EDF /* Mysticweapon.swift */,
 			);
 			name = Weapons;
 			path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Weapons";
@@ -176,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98B0B2ED21788994006D5EDF /* Mysticweapon.swift in Sources */,
 				98E496332152ABCE00596431 /* Colosse.swift in Sources */,
 				98E4962F2152A9D100596431 /* Combattant.swift in Sources */,
 				98E4962921510DC700596431 /* Character.swift in Sources */,
@@ -190,6 +197,7 @@
 				980038502154C44200493EE9 /* Play.swift in Sources */,
 				98E49620214BD95E00596431 /* main.swift in Sources */,
 				98E496352152B96100596431 /* Sword.swift in Sources */,
+				98B0B2EB21788976006D5EDF /* Bigstick.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -76,8 +76,7 @@ class Character {
         //let decimalToInt = NSDecimalNumber(decimal: attack_factor).intValue
         
         if number_crit == 1{
-            weapon.damage = (weapon.damage)*2
-            who.life = who.life - (weapon.damage * attack_factor)
+            who.life = who.life - (weapon.damage * attack_factor*2)
             print("your attack has crit !!!")
         }else{
             who.life = who.life - (weapon.damage * attack_factor)

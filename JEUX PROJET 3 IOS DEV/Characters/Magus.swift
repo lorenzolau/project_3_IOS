@@ -29,7 +29,7 @@ class Magus: Character {
         }else{
             who.life = who.life + (weapon.heal * heal_factor)
         }
-        print(name + " heals " + who.name + " for " + (weapon.heal * heal_factor) + " Life points " )
+        print("\(name) heals \(who.name)  for \(weapon.heal * heal_factor) Life points " )
         
         if who.life > who.max_life {
             print(who.name + " is over healed, he's max of life")

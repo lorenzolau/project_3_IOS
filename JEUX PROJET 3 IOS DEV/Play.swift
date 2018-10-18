@@ -183,7 +183,12 @@ class Play{
             } while lifecheck != 1
             
             print("charcater choosen : \(figther_caracter.name)")
-            
+            // a random number for new weapon 10% chance
+            let random_chest = Int.random(in: 1 ... 10)
+            if random_chest == 5 {
+                print("A new weapon is for you :  \(figther_caracter.name)")
+                figther_caracter.weapon = Mysticweapon()
+            }
             // if magus then select a team character to heal, he cannot attack
             if let magus = figther_caracter as? Magus {
                 // check if magus is alive
