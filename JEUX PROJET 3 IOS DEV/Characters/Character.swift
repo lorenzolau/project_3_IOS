@@ -41,7 +41,7 @@ class Character {
     
     func attack(who: Character) {
         //a random number for crit attack 1/10 chance
-        let number_crit = Int.random(in: 1 ... 10)
+        let number_crit = Int.random(in: 1 ... (100/crit))
         var attack_factor: Decimal = 1.00
         var crit_factor: Decimal = 1.00
          //types :
