@@ -17,10 +17,22 @@ class Magus: Character {
     
     func healing(who: Character) {
         
-        who.life += weapon.heal
+        let number_crit = Int.random(in: 1 ... 10) // random number for critical heal
+        var heal_factor: Decimal = 1.00 // heal factor it depends of character type
+        
+        if number_crit == 1{
+            
+            weapon.heal = (weapon.heal)*2
+            who.life = who.life + (weapon.heal * heal_factor)
+            print("your heal has crit !!!")
+            
+        }else{
+            who.life = who.life + (weapon.heal * heal_factor)
+        }
+        print(name + " heals " + who.name + " for " + (weapon.heal * heal_factor) + " Life points " )
         
         if who.life > who.max_life {
-            
+            print(who.name + " is over healed, he's max of life")
             who.life = who.max_life
             
         }
