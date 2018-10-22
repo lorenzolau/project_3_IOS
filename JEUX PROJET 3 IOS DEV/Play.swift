@@ -111,10 +111,10 @@ class Play{
     func fight(){
         var team_who_fight: Int = 0 //select team who's fighting
         var team_who_receive: Int = 0 //select team who's recieving damages
-        var team_choice: Int = 0 //for choosing team initialize
         var bool: Bool = true //boolean var for repeat the fight
         var lifecheck: Int = 0 //use for bigening the fight and never choose a dead character
-        
+        var team_choice: Int = 0 //for choosing team initialize
+
         //you can select a team who bigin the fight, (maybe random in next version)
         print("Select a team ")
         print("1 - \(teams[0].name)")
@@ -154,12 +154,7 @@ class Play{
             
             print("Select a Character from team : \(teams[team_who_fight].name) ")
            
-            repeat {
-                let read = Read()
-                choice = read.ReadInt()
-                
-            } while choice != 1 && choice != 2 && choice != 3
-            
+           read_choice()
             //put the character who's choosen in var
             figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
             
@@ -170,11 +165,7 @@ class Play{
                 }
                 else{
                     print("You cannot choose a dead character! Choose another")
-                    repeat {
-                        let read = Read()
-                        choice = read.ReadInt()
-                    } while choice != 1 && choice != 2 && choice != 3
-                    
+                   read_choice()
                     
                     //put the character who's choosen in var
                     figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
@@ -199,12 +190,7 @@ class Play{
                 //select a character to heal
                 teams[team_who_fight].characters_display()
                 
-                repeat {
-                    let read = Read()
-                    choice = read.ReadInt()
-                    
-                } while choice != 1 && choice != 2 && choice != 3
-                
+               read_choice()
                 
                 reciver_caracter = teams[team_who_fight].characters_in_team[choice-1]
                     //boucle while to check if the reciever character is alive
@@ -214,11 +200,7 @@ class Play{
                         }
                         else{
                             print("You cannot choose a dead character! Choose another")
-                            repeat {
-                                let read = Read()
-                                choice = read.ReadInt()
-                            } while choice != 1 && choice != 2 && choice != 3
-                            
+                            read_choice()
                             
                             //put the character who's choosen in var
                             reciver_caracter = teams[team_who_fight].characters_in_team[choice-1]
@@ -245,12 +227,7 @@ class Play{
                 
                 teams[team_who_receive].characters_display()
                 
-                repeat {
-                    
-                    let read = Read()
-                    choice = read.ReadInt()
-                    
-                } while choice != 1 && choice != 2 && choice != 3
+                read_choice()
                 //put the choice in var reciver_caracter
                 reciver_caracter = teams[team_who_receive].characters_in_team[choice-1]
                 
@@ -262,11 +239,7 @@ class Play{
                     }
                     else{
                         print("You cannot choose a dead character! Choose another")
-                        repeat {
-                            let read = Read()
-                            choice = read.ReadInt()
-                        } while choice != 1 && choice != 2 && choice != 3
-                        
+                        read_choice()
                         
                         //put the character who's choosen in var
                         reciver_caracter = teams[team_who_fight].characters_in_team[choice-1]
@@ -280,7 +253,6 @@ class Play{
                 
                 
             }
-            
             //select other team
             if team_choice == 1 {
                 
@@ -288,11 +260,12 @@ class Play{
                 team_who_fight = 1
                 team_who_receive = 0
             }else if team_choice == 2 {
-              
+                
                 team_choice = 1
                 team_who_fight = 0
                 team_who_receive = 1
             }
+           
             //check team life if all characters are dead return false and exit while
             if !(teams[team_who_receive].check_life()){
                 print("All the characters in team \(teams[team_who_receive].name) are dead ! \(teams[team_who_fight].name) has won! Congrats")
@@ -306,5 +279,30 @@ class Play{
         
         
     }
+    func select_team(index1: Int,index2: Int){
+        var team_choice: Int = 0 //for choosing team initialize
+        var team_who_fight: Int = 0 //select team who's fighting
+        var team_who_receive: Int = 0 //select team who's recieving damages
+        
+        //select other team
+        if team_choice == 1 {
+            
+            team_choice = 2
+            team_who_fight = index1
+            team_who_receive = index2
+        }else if team_choice == 2 {
+            
+            team_choice = 1
+            team_who_fight = index1
+            team_who_receive = index2
+        }
+    }
+    func read_choice (){
+        repeat {
+            let read = Read()
+            choice = read.ReadInt()
+        } while choice != 1 && choice != 2 && choice != 3
+    }
+    
 }
 
