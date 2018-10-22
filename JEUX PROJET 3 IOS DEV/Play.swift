@@ -15,7 +15,12 @@ class Play{
     var character_not_double = [String]() //array with characters
     var choice = 0 //player choice
     var characterName = "" //character name
-    
+    var team_choice: Int = 0 //for choosing team initialize
+    var team_who_fight: Int = 0 //select team who's fighting
+    var team_who_receive: Int = 0 //select team who's recieving damages
+    var bool: Bool = true //boolean var for repeat the fight
+    var lifecheck: Int = 0 //use for bigening the fight and never choose a dead character
+   
     func play(){
        
 //  creat Team with function createteam()
@@ -109,40 +114,8 @@ class Play{
         }
         //fighting function
     func fight(){
-        var team_who_fight: Int = 0 //select team who's fighting
-        var team_who_receive: Int = 0 //select team who's recieving damages
-        var bool: Bool = true //boolean var for repeat the fight
-        var lifecheck: Int = 0 //use for bigening the fight and never choose a dead character
-        var team_choice: Int = 0 //for choosing team initialize
-
-        //you can select a team who bigin the fight, (maybe random in next version)
-        print("Select a team ")
-        print("1 - \(teams[0].name)")
-        print("2 - \(teams[1].name)")
-        
-        repeat {
-            let read = Read()
-            team_choice = read.ReadInt()
-            
-        } while team_choice != 1 && team_choice != 2
-        
-        if team_choice == 1 {
-            // change var team who fight and recieve 1 or 0
-            team_who_fight = 0
-            team_who_receive = 1
-            
-            print("You have selected team : \(teams[team_who_fight].name)")
-            print("Discover the list :")
-            
-        }else if team_choice == 2 {
-            // change var team who fight and recieve 1 or 0
-            team_who_fight = 1
-            team_who_receive = 0
-            
-            print("You have selected team : \(teams[team_who_fight].name)")
-            print("Discover the list :")
-            
-        }
+       
+    select_team()
         
         repeat{
            
@@ -254,17 +227,7 @@ class Play{
                 
             }
             //select other team
-            if team_choice == 1 {
-                
-                team_choice = 2
-                team_who_fight = 1
-                team_who_receive = 0
-            }else if team_choice == 2 {
-                
-                team_choice = 1
-                team_who_fight = 0
-                team_who_receive = 1
-            }
+            select_choice()
            
             //check team life if all characters are dead return false and exit while
             if !(teams[team_who_receive].check_life()){
@@ -279,24 +242,23 @@ class Play{
         
         
     }
-    func select_team(index1: Int,index2: Int){
-        var team_choice: Int = 0 //for choosing team initialize
-        var team_who_fight: Int = 0 //select team who's fighting
-        var team_who_receive: Int = 0 //select team who's recieving damages
+    
+    func select_choice(){
         
         //select other team
         if team_choice == 1 {
             
             team_choice = 2
-            team_who_fight = index1
-            team_who_receive = index2
+            team_who_fight = 1
+            team_who_receive = 0
         }else if team_choice == 2 {
             
             team_choice = 1
-            team_who_fight = index1
-            team_who_receive = index2
+            team_who_fight = 0
+            team_who_receive = 1
         }
     }
+    
     func read_choice (){
         repeat {
             let read = Read()
@@ -304,5 +266,35 @@ class Play{
         } while choice != 1 && choice != 2 && choice != 3
     }
     
+    func select_team() {
+        //you can select a team who bigin the fight, (maybe random in next version)
+        print("Select a team ")
+        print("1 - \(teams[0].name)")
+        print("2 - \(teams[1].name)")
+        
+        repeat {
+            let read = Read()
+            team_choice = read.ReadInt()
+            
+        } while team_choice != 1 && team_choice != 2
+        
+        if team_choice == 1 {
+            // change var team who fight and recieve 1 or 0
+            team_who_fight = 0
+            team_who_receive = 1
+            
+            print("You have selected team : \(teams[team_who_fight].name)")
+            print("Discover the list :")
+            
+        }else if team_choice == 2 {
+            // change var team who fight and recieve 1 or 0
+            team_who_fight = 1
+            team_who_receive = 0
+            
+            print("You have selected team : \(teams[team_who_fight].name)")
+            print("Discover the list :")
+            
+        }
+    }
 }
 

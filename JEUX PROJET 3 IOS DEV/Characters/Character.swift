@@ -42,37 +42,37 @@ class Character {
     func attack(who: Character) {
         //a random number for crit attack 1/10 chance
         let number_crit = Int.random(in: 1 ... (100/crit))
-        var attack_factor: Decimal = 1.00
+        var attack_factor: Decimal = 1
+      
         var crit_factor: Decimal = 1.00
          //types :
         //human vs rock
         print("Type \(type.rawValue) vs type \(who.type.rawValue)")
         
         if type.rawValue == "human" && who.type.rawValue == "rock"{
-            attack_factor = attack_factor/4.00
-          }
+             attack_factor = type_factor(attack_factor_par: 0.25)
+        }
         //human vs elf
         if type.rawValue == "human" && who.type.rawValue == "elf"{
-            attack_factor = attack_factor * 1.50
-        }
+            attack_factor = type_factor(attack_factor_par: 1.5)
+          }
         //rock vs human
         if type.rawValue == "rock" && who.type.rawValue == "human"{
-            attack_factor = attack_factor*1.50
+            attack_factor = type_factor(attack_factor_par: 1.5)
           }
         //rock vs elf
         if type.rawValue == "rock" && who.type.rawValue == "elf"{
-            attack_factor = attack_factor*1.80
-         }
+            attack_factor = type_factor(attack_factor_par: 1.8)
+            }
         //elf vs rock
         if type.rawValue == "elf" && who.type.rawValue == "rock"{
-            attack_factor = attack_factor/2
-          }
+            attack_factor = type_factor(attack_factor_par: 0.5)
+           }
         //elf vs human
         if type.rawValue == "elf" && who.type.rawValue == "human"{
-            attack_factor = attack_factor/1.20
+            attack_factor = type_factor(attack_factor_par: 0.75)
         }
-        print("attack factor : \(attack_factor)")
-        
+       
         //if crit
         //let decimalToInt = NSDecimalNumber(decimal: attack_factor).intValue
         
@@ -111,5 +111,14 @@ class Character {
 
      func check_caracter_life() -> Bool{
         return life > 0
+    }
+    func type_factor(attack_factor_par: Decimal) -> Decimal{
+        
+        var factor: Decimal = 1
+        
+        factor = factor * attack_factor_par
+        print("attack factor : \(factor)")
+        
+        return factor
     }
 }
