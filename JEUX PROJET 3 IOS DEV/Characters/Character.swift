@@ -48,31 +48,17 @@ class Character {
          //types :
         //human vs rock
         print("Type \(type.rawValue) vs type \(who.type.rawValue)")
-        
-        if type.rawValue == "human" && who.type.rawValue == "rock"{
-             attack_factor = type_factor(attack_factor_par: 0.25)
-        }
+        if type.rawValue == "human" && who.type.rawValue == "rock"{attack_factor = type_factor(attack_factor_par: 0.25)}
         //human vs elf
-        if type.rawValue == "human" && who.type.rawValue == "elf"{
-            attack_factor = type_factor(attack_factor_par: 1.5)
-          }
+        if type.rawValue == "human" && who.type.rawValue == "elf"{attack_factor = type_factor(attack_factor_par: 1.5)}
         //rock vs human
-        if type.rawValue == "rock" && who.type.rawValue == "human"{
-            attack_factor = type_factor(attack_factor_par: 1.5)
-          }
+        if type.rawValue == "rock" && who.type.rawValue == "human"{attack_factor = type_factor(attack_factor_par: 1.5)}
         //rock vs elf
-        if type.rawValue == "rock" && who.type.rawValue == "elf"{
-            attack_factor = type_factor(attack_factor_par: 1.8)
-            }
+        if type.rawValue == "rock" && who.type.rawValue == "elf"{attack_factor = type_factor(attack_factor_par: 1.8)}
         //elf vs rock
-        if type.rawValue == "elf" && who.type.rawValue == "rock"{
-            attack_factor = type_factor(attack_factor_par: 0.5)
-           }
+        if type.rawValue == "elf" && who.type.rawValue == "rock"{attack_factor = type_factor(attack_factor_par: 0.5)}
         //elf vs human
-        if type.rawValue == "elf" && who.type.rawValue == "human"{
-            attack_factor = type_factor(attack_factor_par: 0.75)
-        }
-       
+        if type.rawValue == "elf" && who.type.rawValue == "human"{attack_factor = type_factor(attack_factor_par: 0.75)}
         //if crit
         //let decimalToInt = NSDecimalNumber(decimal: attack_factor).intValue
         
@@ -83,6 +69,24 @@ class Character {
         }else{
             who.life = who.life - (weapon.damage * attack_factor)
         }
+        character_dead(who: who, attack_factor: attack_factor, crit_factor: crit_factor)
+        
+    }
+
+     func check_caracter_life() -> Bool{
+        return life > 0
+    }
+    
+    func type_factor(attack_factor_par: Decimal) -> Decimal{
+        
+        var factor: Decimal = 1
+        
+        factor = factor * attack_factor_par
+        print("attack factor : \(factor)")
+        
+        return factor
+    }
+    func character_dead (who: Character, attack_factor: Decimal, crit_factor: Decimal){
         
         if who.life < 0 {
             who.life = 0
@@ -109,16 +113,4 @@ class Character {
         }
     }
 
-     func check_caracter_life() -> Bool{
-        return life > 0
-    }
-    func type_factor(attack_factor_par: Decimal) -> Decimal{
-        
-        var factor: Decimal = 1
-        
-        factor = factor * attack_factor_par
-        print("attack factor : \(factor)")
-        
-        return factor
-    }
 }
