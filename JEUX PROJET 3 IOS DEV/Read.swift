@@ -7,8 +7,9 @@
 //
 
 import Foundation
-// création de l'objet read pour la saisie utilisateur pour un int et un string
-
+////////////////////////////////////////////////
+// create Read object for readline and return an int or string
+///////////////////////////////////////////////
 class Read {
     
     func ReadString() -> String{
