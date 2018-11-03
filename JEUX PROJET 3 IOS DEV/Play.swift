@@ -34,7 +34,8 @@ class Play{
     }
     
     func createteam(tnb: Int) {
-        
+        //remove array characters for 2th team
+        characters.removeAll()
         var teamname = "" //name of the team
         let team = Team()
         //let characters_definiton = Combattant()
@@ -64,7 +65,6 @@ class Play{
     }
         team.characters_in_team = characters // add characters in team
         teams.append(team)  // add team
-        
     }
     //////////////////////////////////////////////////////
     ////////////principal fighting function///////////////
@@ -74,7 +74,7 @@ class Play{
     select_team()
         repeat{
             var figther_caracter: Character       // Character who fight
-            var reciver_caracter: Character       // Character who recive
+           // var reciver_caracter: Character       // Character who recive
             //call function to display character in team who is choosen
             teams[team_who_fight].characters_display()
             //select character in team
@@ -101,12 +101,12 @@ class Play{
             let random_chest = Int.random(in: 1 ... 10)
             // if magus then select a team character to heal, he cannot attack
             if let magus = figther_caracter as? Magus {
-                if let character = if_magus(index_coffre: random_chest, magus: magus, figther_caracter: figther_caracter ){
-                    reciver_caracter = character
+                if if_magus(index_coffre: random_chest, magus: magus, figther_caracter: figther_caracter ) != nil{
+                  
                 }
             }else{ // if not magus then select a character in oposent team
-                if let character = if_not_magus(index_chest: random_chest, figther_caracter: figther_caracter ){
-                    reciver_caracter = character
+                if if_not_magus(index_chest: random_chest, figther_caracter: figther_caracter ) != nil{
+                
                 }
             }
             //select other team
@@ -144,6 +144,16 @@ class Play{
             let read = Read()
             choice = read.ReadInt()
         } while choice != 1 && choice != 2 && choice != 3
+    } //////////////////////////////////
+    // function read choice for test choices
+    //////////////////////////////////
+    func read_choice_test (number: Int){
+        for _ in 1...number {
+           
+            choice = Read().ReadInt()
+            
+        }
+       
     }
     //////////////////////////////////
     //function read choice for 4 choices
@@ -170,15 +180,14 @@ class Play{
             // change var team who fight and recieve 1 or 0
             team_who_fight = 0
             team_who_receive = 1
-            print("You have selected team : \(teams[team_who_fight].name)")
-            print("Discover the list :")
+            
         }else if team_choice == 2 {
             // change var team who fight and recieve 1 or 0
             team_who_fight = 1
             team_who_receive = 0
-            print("You have selected team : \(teams[team_who_fight].name)")
-            print("Discover the list :")
         }
+        print("You have selected team : \(teams[team_who_fight].name)")
+        print("Discover the list :")
     }
     //////////////////////////////////
     ///function if magus is selected//
@@ -222,34 +231,39 @@ class Play{
     //function if other character is choosen not magus
     //////////////////////////////////
     func if_not_magus(index_chest:Int, figther_caracter: Character)-> Character?{
-        var character_to_return: Character
+        var character_to_attack: Character
         //if random number
         if index_chest == 5 {
             print("A new weapon is for you :  \(figther_caracter.name)")
             figther_caracter.weapon = Mysticweapon()
         }
+        if figther_caracter.life > 0 {
         // else select a oponent
         print("You can choose a character to hit from oposent team \(teams[team_who_receive].name):")
         teams[team_who_receive].characters_display()
         read_choice()
         //put the choice in var reciver_caracter
-        character_to_return = teams[team_who_receive].characters_in_team[choice-1]
+        character_to_attack = teams[team_who_receive].characters_in_team[choice-1]
         //if a dead character is choosen, tell to the gamer : impossible to use it
         //repeat here the choice if character choosen is dead
         repeat {
-            if character_to_return.life > 0{
-                    lifecheck = 1
-                    }
-                else{
-                    print("You cannot choose a dead character! Choose another")
-                    read_choice()
-                    //put the character who's choosen in var
-                    character_to_return = teams[team_who_fight].characters_in_team[choice-1]
-                    }
-                } while lifecheck != 1
+            if character_to_attack.life > 0{
+                lifecheck = 1
+            }
+            else{
+                print("You cannot choose a dead character! Choose another")
+                read_choice()
+                //put the character who's choosen in var
+                character_to_attack = teams[team_who_fight].characters_in_team[choice-1]
+            }
+        } while lifecheck != 1
         //call attack function in class Character and begin the fight between 2 choosen characters
-        figther_caracter.attack(who: character_to_return)
-        return nil
+        figther_caracter.attack(who: character_to_attack)
+        return character_to_attack
+        }else{
+            print("You cannot choose a dead character!")
+            return nil
+        }
     }
     //////////////////////////////////
     //function for testing if name is double
