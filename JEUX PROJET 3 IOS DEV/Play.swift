@@ -90,13 +90,9 @@ class Play{
             let random_chest = Int.random(in: 1 ... 10)
             // if magus then select a team character to heal, he cannot attack
             if let magus = figther_caracter as? Magus {
-                if if_magus(index_coffre: random_chest, magus: magus, figther_caracter: figther_caracter ) != nil{
-                  
-                }
+                if if_magus(index_coffre: random_chest, magus: magus, figther_caracter: figther_caracter ) != nil{}
             }else{ // if not magus then select a character in oposent team
-                if if_not_magus(index_chest: random_chest, figther_caracter: figther_caracter ) != nil{
-                
-                }
+                if if_not_magus(index_chest: random_chest, figther_caracter: figther_caracter ) != nil{}
             }
             //select other team
             select_choice()
@@ -194,7 +190,7 @@ class Play{
         else{
             print("You cannot choose a dead character!")
             return nil
-            }
+        }
     }
     //////////////////////////////////////////////////////////
     //function if an other character is choosen, not magus////
@@ -208,19 +204,19 @@ class Play{
         }
         //if character is alife
         if figther_caracter.life > 0 {
-        // else select a oponent
-        print("You can choose a character to hit from oposent team \(teams[team_who_receive].name):")
-        teams[team_who_receive].characters_display()
-        read_choice()
-        //put the choice in var reciver_caracter
-        character_to_attack = teams[team_who_receive].characters_in_team[choice-1]
-        //function to check if the reciever character is alive
-        check_life_reciever(reciver: character_to_attack)
-        //put the character who's choosen in var
-        character_to_attack = teams[team_who_fight].characters_in_team[choice-1]
-        //call attack function in class Character and begin the fight between 2 choosen characters
-        figther_caracter.attack(who: character_to_attack)
-        return character_to_attack
+            // else select a oponent
+            print("You can choose a character to hit from oposent team \(teams[team_who_receive].name):")
+            teams[team_who_receive].characters_display()
+            read_choice()
+            //put the choice in var reciver_caracter
+            character_to_attack = teams[team_who_receive].characters_in_team[choice-1]
+            //function to check if the reciever character is alive
+            check_life_reciever(reciver: character_to_attack)
+            //put the character who's choosen in var
+           // character_to_attack = teams[team_who_fight].characters_in_team[choice-1]
+            //call attack function in class Character and begin the fight between 2 choosen characters
+            figther_caracter.attack(who: character_to_attack)
+            return character_to_attack
         }else{
             print("You cannot choose a dead character!")
             return nil
@@ -230,16 +226,16 @@ class Play{
     //function to check if reciver is alive///
     //////////////////////////////////////////
     func check_life_reciever (reciver: Character){
-    //repeat here the choice if character choosen is dead
-    repeat {
-    if reciver.life > 0{
-    lifecheck = 1
-    }
-    else{
-    print("You cannot choose a dead character! Choose another")
-    read_choice()
-    }
-    } while lifecheck != 1
+        //repeat here the choice if character choosen is dead
+        repeat {
+            if reciver.life > 0{
+                lifecheck = 1
+            }
+            else{
+                print("You cannot choose a dead character! Choose another")
+                read_choice()
+            }
+        } while lifecheck != 1
     }
     //////////////////////////////////
     //function for testing if name is double
