@@ -36,9 +36,9 @@ class Character {
         self.life = max_life
         
 }
-    //function attack
-
-    
+    /////////////////////////////
+    ////function attack//////////
+    /////////////////////////////
     func attack(who: Character) {
         //a random number for crit attack 1/10 chance
         let number_crit = Int.random(in: 1 ... (100/crit))
@@ -69,18 +69,23 @@ class Character {
         }else{
             who.life = who.life - (weapon.damage * attack_factor)
         }
+        //check if character is dead and say it to player
         character_dead(who: who, attack_factor: attack_factor, crit_factor: crit_factor)
         
     }
-
+    //////////////////////////////////////////////////////////
+    ////////function check life return a boolean//////////////
+    //////////////////////////////////////////////////////////
      func check_caracter_life() -> Bool{
         return life > 0
     }
-    
+    //////////////////////////////////////////////////////////
+    ////////function type factor//////////////
+    //////////////////////////////////////////////////////////
     func type_factor(attack_factor_par: Decimal) -> Decimal{
         
         var factor: Decimal = 1
-        
+        //var factor depends what kind of character type
         factor = factor * attack_factor_par
         print("attack factor : \(factor)")
         

@@ -22,36 +22,34 @@ class Play{
     var lifecheck: Int = 0 //use for bigening the fight and never choose a dead character
     var characters = [Character]() //character list in array
     
-    
+    ///////////////////////////////////////////////
+    ////////////  function play  //////////////////
+    ///////////////////////////////////////////////
     func play(){
-       
-//  creat Team with function createteam()
     for team_nb in 1...2 {
+        //call function createam to create 2 teams
         createteam(tnb: team_nb)
         }
         //call function fight
        fight()
+    print("End of game, thanks for playing")
     }
     //////////////////////////////////////////////////////
     ////////////   function create teams   ///////////////
     //////////////////////////////////////////////////////
     func createteam(tnb: Int) {
-        //remove array characters for 2th team
-        characters.removeAll()
         
-        let team = Team()
-        //let characters_definiton = Combattant()
+        characters.removeAll() //remove array for creating 2th team
+        let team = Team() //team object
         var teamname = "" //name of the team
-        print("Input your team name n°\(tnb)")
+        print("Input team name n°\(tnb)")
     repeat{
         let read = Read()
         teamname = read.ReadString()
     }while teamname == ""
     
-    team.name = teamname
-    
-        print_descritpion()
-        
+        team.name = teamname
+        print_descritpion() // description of characters to make a choice for players
         team.characters_in_team = characters // add characters in team
         teams.append(team)  // add team in array
     }
@@ -63,15 +61,10 @@ class Play{
     select_team()
         repeat{
             var figther_caracter: Character       // Character who fight
-           // var reciver_caracter: Character       // Character who recive
-            //call function to display character in team who is choosen
-            teams[team_who_fight].characters_display()
-            //select character in team
-            print("Select a Character from team : \(teams[team_who_fight].name) ")
-            //function readline for select a character in team
-            read_choice()
-            //put the character who's choosen in var figther_caracter
-            figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
+            teams[team_who_fight].characters_display() //call function to display character in team who is choosen
+            print("Select a Character from team : \(teams[team_who_fight].name) to fight")
+            read_choice() //function readline for select a character in team
+            figther_caracter = teams[team_who_fight].characters_in_team[choice-1] //put the character who's choosen in var figther_caracter
             //check if character choosen is dead
             repeat {
                 // à sortir
@@ -85,10 +78,9 @@ class Play{
                     figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
                 }
             } while lifecheck != 1
-            print("charcater choosen : \(figther_caracter.name)")
-            // a random number for new weapon 10% chance
-            let random_chest = Int.random(in: 1 ... 10)
+            print("charcater choosen : \(figther_caracter.name) from team \(teams[team_who_fight].name)")
             // if magus then select a team character to heal, he cannot attack
+            let random_chest = Int.random(in: 1 ... 10)  // a random number for new weapon 10% chance
             if let magus = figther_caracter as? Magus {
                 if if_magus(index_coffre: random_chest, magus: magus, figther_caracter: figther_caracter ) != nil{}
             }else{ // if not magus then select a character in oposent team
@@ -171,7 +163,7 @@ class Play{
         var character_to_return: Character
         //if var index_coffre = 5 a the random number 1 to 10 then give a bigstick weapon to magus
         if index_coffre == 5 {
-            print("A new weapon is for you :  \(figther_caracter.name)")
+            print("A new weapon is for you  \(figther_caracter.name) : A Bigstick who heals for 50 life!")
             figther_caracter.weapon = Bigstick()
         }
         // check if magus is alive
@@ -199,7 +191,7 @@ class Play{
         var character_to_attack: Character
         //if random number
         if index_chest == 5 {
-            print("A new weapon is for you :  \(figther_caracter.name)")
+            print("A new weapon is for you \(figther_caracter.name) : A Mystic weapon who deals 50 damages")
             figther_caracter.weapon = Mysticweapon()
         }
         //if character is alife
