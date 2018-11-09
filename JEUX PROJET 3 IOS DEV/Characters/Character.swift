@@ -10,13 +10,6 @@ import Foundation
 
 // Create characters
 
-enum Typeofcharacter: String {
-    case Magus = "healer"
-    case Combattant = "human"
-    case Colosse = "rock"
-    case Dwarf = "elf"
-}
-
 class Character {
     
     let name: String
@@ -24,9 +17,9 @@ class Character {
     var life: Decimal
     let max_life: Decimal
     var crit: Int
-    var type: Typeofcharacter
+    var type: String
     
-    init(name: String, weapon: Weapon, crit: Int,type: Typeofcharacter, max_life: Decimal) {
+    init(name: String, weapon: Weapon, crit: Int,type: String, max_life: Decimal) {
         self.name = name
         self.weapon = weapon
         self.crit = crit
@@ -47,18 +40,19 @@ class Character {
         var crit_factor: Decimal = 1.00
          //types :
         //human vs rock
-        print("Type \(type.rawValue) vs type \(who.type.rawValue)")
-        if type.rawValue == "human" && who.type.rawValue == "rock"{attack_factor = type_factor(attack_factor_par: 0.25)}
+        print("Type \(type) vs type \(who.type)")
+        
+        if type == "human" && who.type == "rock"{attack_factor = type_factor(attack_factor_par: 0.25)}
         //human vs elf
-        if type.rawValue == "human" && who.type.rawValue == "elf"{attack_factor = type_factor(attack_factor_par: 1.5)}
+        if type == "human" && who.type == "elf"{attack_factor = type_factor(attack_factor_par: 1.5)}
         //rock vs human
-        if type.rawValue == "rock" && who.type.rawValue == "human"{attack_factor = type_factor(attack_factor_par: 1.5)}
+        if type == "rock" && who.type == "human"{attack_factor = type_factor(attack_factor_par: 1.5)}
         //rock vs elf
-        if type.rawValue == "rock" && who.type.rawValue == "elf"{attack_factor = type_factor(attack_factor_par: 1.8)}
+        if type == "rock" && who.type == "elf"{attack_factor = type_factor(attack_factor_par: 1.8)}
         //elf vs rock
-        if type.rawValue == "elf" && who.type.rawValue == "rock"{attack_factor = type_factor(attack_factor_par: 0.5)}
+        if type == "elf" && who.type == "rock"{attack_factor = type_factor(attack_factor_par: 0.5)}
         //elf vs human
-        if type.rawValue == "elf" && who.type.rawValue == "human"{attack_factor = type_factor(attack_factor_par: 0.75)}
+        if type == "elf" && who.type == "human"{attack_factor = type_factor(attack_factor_par: 0.75)}
         //if crit
         //let decimalToInt = NSDecimalNumber(decimal: attack_factor).intValue
         
@@ -118,40 +112,6 @@ class Character {
             }
         } else {
             print(name + " he is already dead, sorry for you dude :(")
-        }
-    }
-    /////////////////////////////
-    ////function healing////////
-    /////////////////////////////
-    func healing(who: Character) {
-        
-        let number_crit = Int.random(in: 1 ... (100/crit)) // random number for critical heal
-        var heal_factor: Decimal = 1.00 // heal factor it depends of character type
-        var crit_factor: Decimal = 1.00 // crit factor
-        //healing a type rock
-        if  who.type.rawValue == "rock"{
-            heal_factor = heal_factor/4.00
-        }
-        //healing a type elf
-        if  who.type.rawValue == "elf"{
-            heal_factor = heal_factor * 1.20
-        }
-        
-        if number_crit == 1{
-            
-            crit_factor = 2
-            who.life = who.life + (weapon.heal * heal_factor * crit_factor)
-            print("your heal has crit !!!")
-            
-        }else{
-            who.life = who.life + (weapon.heal * heal_factor)
-        }
-        print("\(name) heals \(who.name)  for \(weapon.heal * heal_factor * crit_factor) Life points " )
-        
-        if who.life > who.max_life {
-            print(who.name + " is over healed, he's max of life")
-            who.life = who.max_life
-            
         }
     }
 

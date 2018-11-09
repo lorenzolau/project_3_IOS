@@ -57,8 +57,8 @@ class Play{
     ////////////principal fighting function///////////////
     //////////////////////////////////////////////////////
     func fight(){
-    //select a team with function
-    select_team()
+        //select a team with function
+        select_team()
         repeat{
             var figther_caracter: Character       // Character who fight
             teams[team_who_fight].characters_display() //call function to display character in team who is choosen
@@ -66,26 +66,16 @@ class Play{
             read_choice() //function readline for select a character in team
             figther_caracter = teams[team_who_fight].characters_in_team[choice-1] //put the character who's choosen in var figther_caracter
             //check if character choosen is dead
-            repeat {
-                // à sortir
-                if figther_caracter.life > 0{
-                    lifecheck = 1
-                }
-                else{
-                    print("You cannot choose a dead character! Choose another")
-                    read_choice()
-                    //put the character who's choosen in var
-                    figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
-                }
-            } while lifecheck != 1
+            check_life_reciever(reciver: figther_caracter)
+            figther_caracter = teams[team_who_fight].characters_in_team[choice-1]
             print("charcater choosen : \(figther_caracter.name) from team \(teams[team_who_fight].name)")
             // if magus then select a team character to heal, he cannot attack
             let random_chest = Int.random(in: 1 ... 10)  // a random number for new weapon 10% chance
-            if let magus = figther_caracter as? Magus {
-                if if_magus(index_coffre: random_chest, magus: magus, figther_caracter: figther_caracter ) != nil{}
-            }else{ // if not magus then select a character in oposent team
-                if if_not_magus(index_chest: random_chest, figther_caracter: figther_caracter ) != nil{}
-            }
+            //  if let magus = figther_caracter as? Magus {
+            //     if magus_selected(index_coffre: random_chest, magus: magus, figther_caracter: figther_caracter ) != nil{}
+            // }else{
+            if not_magus(index_chest: random_chest, figther_caracter: figther_caracter ) != nil{}
+            // }
             //select other team
             select_choice()
             //check team life if all characters are dead return false and exit while
@@ -122,6 +112,10 @@ class Play{
             choice = read.ReadInt()
         } while choice != 1 && choice != 2 && choice != 3
     }
+    //func calculSomme (a,b) -> Int{
+    //    return a + b
+    //}
+   // let somme = calculSomme(3,5)
     //////////////////////////////////
     //function read choice for 4 choices
     //////////////////////////////////
@@ -159,7 +153,7 @@ class Play{
     //////////////////////////////////
     ///function if magus is selected//
     //////////////////////////////////
-    func if_magus (index_coffre: Int, magus: Magus, figther_caracter: Character) -> Character?{
+    func magus_selected(index_coffre: Int, magus: Magus, figther_caracter: Character) -> Character?{
         var character_to_return: Character
         //if var index_coffre = 5 a the random number 1 to 10 then give a bigstick weapon to magus
         if index_coffre == 5 {
@@ -176,7 +170,7 @@ class Play{
             //function to check if the reciever character is alive
             check_life_reciever(reciver: character_to_return)
             //magus heal a team character choosen
-            magus.healing(who: character_to_return)
+            magus.attack(who: character_to_return)
             return character_to_return
         }
         else{
@@ -187,26 +181,22 @@ class Play{
     //////////////////////////////////////////////////////////
     //function if an other character is choosen, not magus////
     //////////////////////////////////////////////////////////
-    func if_not_magus(index_chest:Int, figther_caracter: Character)-> Character?{
+    func not_magus(index_chest:Int, figther_caracter: Character)-> Character?{
         var character_to_attack: Character
         //if random number
-        if index_chest == 5 {
+        if index_chest == 5{
             print("A new weapon is for you \(figther_caracter.name) : A Mystic weapon who deals 50 damages")
             figther_caracter.weapon = Mysticweapon()
         }
         //if character is alife
         if figther_caracter.life > 0 {
-            // else select a oponent
+            
             print("You can choose a character to hit from oposent team \(teams[team_who_receive].name):")
             teams[team_who_receive].characters_display()
             read_choice()
             //put the choice in var reciver_caracter
             character_to_attack = teams[team_who_receive].characters_in_team[choice-1]
-            //function to check if the reciever character is alive
             check_life_reciever(reciver: character_to_attack)
-            //put the character who's choosen in var
-           // character_to_attack = teams[team_who_fight].characters_in_team[choice-1]
-            //call attack function in class Character and begin the fight between 2 choosen characters
             figther_caracter.attack(who: character_to_attack)
             return character_to_attack
         }else{
@@ -232,22 +222,28 @@ class Play{
     //////////////////////////////////
     //function for testing if name is double
     //////////////////////////////////
+    func getNotEmptyString() -> String {
+        var userEntry: String
+        repeat{
+            let read = Read()
+            userEntry = read.ReadString()
+        } while userEntry == ""
+        return userEntry
+    }
     func name_not_double (i: Int){
+        var isNewValueAdded: Bool = false
+        
         print("Enter a name for character n°\(i)")
-        characterName = ""
         repeat {
-            repeat{
-                let read = Read()
-                characterNamedouble = read.ReadString()
-                   } while characterNamedouble == ""
+           let characterNamedouble = getNotEmptyString()
             if (character_not_double.contains(characterNamedouble)){
                 print("The name \(characterNamedouble) already exist")
                 }
             else{
-                characterName = characterNamedouble
-                character_not_double.append(characterName)
+                character_not_double.append(characterNamedouble)
+                isNewValueAdded = true
                 }
-                } while characterName == ""
+                } while isNewValueAdded == false
     }
     //////////////////////////////////
     // function swich for add a character in a team
