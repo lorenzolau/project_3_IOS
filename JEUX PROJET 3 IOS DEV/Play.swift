@@ -63,7 +63,7 @@ class Play{
             var figther_caracter: Character       // Character who fight
             teams[team_who_fight].characters_display() //call function to display character in team who is choosen
             print("Select a Character from team : \(teams[team_who_fight].name) to fight")
-            read_choice() //function readline for select a character in team
+            choice = Read().userChoice(index: 3)
             figther_caracter = teams[team_who_fight].characters_in_team[choice-1] //put the character who's choosen in var figther_caracter
             //check if character choosen is dead
             check_life_reciever(reciver: figther_caracter)
@@ -104,27 +104,14 @@ class Play{
         }
     }
     //////////////////////////////////
-    // function read choice for 3 choices
-    //////////////////////////////////
-    func read_choice (){
-        repeat {
-            let read = Read()
-            choice = read.ReadInt()
-        } while choice != 1 && choice != 2 && choice != 3
-    }
-    //func calculSomme (a,b) -> Int{
-    //    return a + b
-    //}
-   // let somme = calculSomme(3,5)
-    //////////////////////////////////
     //function read choice for 4 choices
     //////////////////////////////////
-    func read_choice_4 (){
-        repeat {
-            let read = Read()
-            choice = read.ReadInt()
-        } while choice != 1 && choice != 2 && choice != 3 && choice != 4
-    }
+   // func read_choice_4 (){
+    //    repeat {
+     //       let read = Read()
+       //     choice = read.ReadInt()
+      //  } while choice != 1 && choice != 2 && choice != 3 && choice != 4
+    //}
     //////////////////////////////////
     //function for select team who act
     //////////////////////////////////
@@ -165,7 +152,7 @@ class Play{
             print("You can choose a character to heal from your team :")
             //select a character to heal
             teams[team_who_fight].characters_display()
-            read_choice()
+            choice = Read().userChoice(index: 3)
             character_to_return = teams[team_who_fight].characters_in_team[choice-1]
             //function to check if the reciever character is alive
             check_life_reciever(reciver: character_to_return)
@@ -193,7 +180,7 @@ class Play{
             
             print("You can choose a character to hit from oposent team \(teams[team_who_receive].name):")
             teams[team_who_receive].characters_display()
-            read_choice()
+            choice = Read().userChoice(index: 3)
             //put the choice in var reciver_caracter
             character_to_attack = teams[team_who_receive].characters_in_team[choice-1]
             check_life_reciever(reciver: character_to_attack)
@@ -215,7 +202,7 @@ class Play{
             }
             else{
                 print("You cannot choose a dead character! Choose another")
-                read_choice()
+                choice = Read().userChoice(index: 3)
             }
         } while lifecheck != 1
     }
@@ -277,7 +264,7 @@ class Play{
     print("3 - Dwarf (use a Hax who deals 18 damages, his type is human, he has 65 life")
     print("4 - Colosse (use his hands who deals 6 damages, his type is rock, he has 150 life)")
     //function readline for choice 1 to 4, and nothing else
-    read_choice_4()
+    choice = Read().userChoice(index: 4)
     //check if name is double
     name_not_double(i : i)
     //switch for adding what kind of character is choosen in array

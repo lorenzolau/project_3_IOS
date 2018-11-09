@@ -24,5 +24,19 @@ class Read {
         guard let datatransformInt = Int(dataInt) else { return 0 }
         return datatransformInt
     }
-    
+    ///////////////////////////////////////
+    // function userChoice with readline()
+    //////////////////////////////////////
+    func userChoice (index: Int) -> Int{
+        repeat {
+            if let read = readLine() {
+                if let choice = Int(read){
+                    if choice > 0 && choice <= index {
+                        return choice
+                    }
+                }
+            }
+            print("Make a choice between 1 and \(index)")
+        } while true
+    }
 }
