@@ -18,16 +18,11 @@ class Read {
         return dataString
     }
     
-    func ReadInt() -> Int{
-        
-        guard let dataInt = readLine() else { return 0 }
-        guard let datatransformInt = Int(dataInt) else { return 0 }
-        return datatransformInt
-    }
+
     ///////////////////////////////////////
     // function userChoice with readline()
     //////////////////////////////////////
-    func userChoice (index: Int) -> Int{
+    func selectValueUnder (index: Int) -> Int{
         repeat {
             if let read = readLine() {
                 if let choice = Int(read){

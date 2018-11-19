@@ -8,7 +8,7 @@
 
 import Foundation
 
-let start = Play()
+let start = Game()
 
-start.play()
+start.Game()
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		980038502154C44200493EE9 /* Play.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9800384F2154C44200493EE9 /* Play.swift */; };
+		980038502154C44200493EE9 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9800384F2154C44200493EE9 /* Game.swift */; };
 		98B0B2EB21788976006D5EDF /* Bigstick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B0B2EA21788976006D5EDF /* Bigstick.swift */; };
 		98B0B2ED21788994006D5EDF /* Mysticweapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B0B2EC21788994006D5EDF /* Mysticweapon.swift */; };
 		98E49620214BD95E00596431 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98E4961F214BD95E00596431 /* main.swift */; };
@@ -38,7 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9800384F2154C44200493EE9 /* Play.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Play.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Play.swift"; sourceTree = "<absolute>"; };
+		9800384F2154C44200493EE9 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Game.swift; path = "/Users/pyran/Desktop/JEUX PROJET 3 IOS DEV/JEUX PROJET 3 IOS DEV/Game.swift"; sourceTree = "<absolute>"; };
 		98B0B2EA21788976006D5EDF /* Bigstick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bigstick.swift; sourceTree = "<group>"; };
 		98B0B2EC21788994006D5EDF /* Mysticweapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mysticweapon.swift; sourceTree = "<group>"; };
 		98E4961C214BD95E00596431 /* JEUX PROJET 3 IOS DEV */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "JEUX PROJET 3 IOS DEV"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +119,7 @@
 				98E4961F214BD95E00596431 /* main.swift */,
 				98E4963C2152C22500596431 /* Read.swift */,
 				98E4962621510DB600596431 /* Team.swift */,
-				9800384F2154C44200493EE9 /* Play.swift */,
+				9800384F2154C44200493EE9 /* Game.swift */,
 			);
 			path = "JEUX PROJET 3 IOS DEV";
 			sourceTree = "<group>";
@@ -194,7 +194,7 @@
 				98E4963B2152BC0100596431 /* Hand.swift in Sources */,
 				98E496312152AA7B00596431 /* Dwarf.swift in Sources */,
 				98E4963D2152C22500596431 /* Read.swift in Sources */,
-				980038502154C44200493EE9 /* Play.swift in Sources */,
+				980038502154C44200493EE9 /* Game.swift in Sources */,
 				98E49620214BD95E00596431 /* main.swift in Sources */,
 				98E496352152B96100596431 /* Sword.swift in Sources */,
 				98B0B2EB21788976006D5EDF /* Bigstick.swift in Sources */,

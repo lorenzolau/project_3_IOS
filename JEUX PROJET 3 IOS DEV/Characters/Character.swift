@@ -28,75 +28,59 @@ class Character {
         self.max_life = max_life
         self.life = max_life
         
-}
+    }
+    
     /////////////////////////////
     ////function attack//////////
     /////////////////////////////
     func attack(who: Character) {
-        //a random number for crit attack 1/10 chance
         let number_crit = Int.random(in: 1 ... (100/crit))
-        var attack_factor: Decimal = 1
-      
-        var crit_factor: Decimal = 1.00
-         //types :
-        //human vs rock
+        var attackFactor: Decimal = 1
+        var critFactor: Decimal = 1.00
         print("Type \(type) vs type \(who.type)")
-        
-        if type == "human" && who.type == "rock"{attack_factor = type_factor(attack_factor_par: 0.25)}
-        //human vs elf
-        if type == "human" && who.type == "elf"{attack_factor = type_factor(attack_factor_par: 1.5)}
-        //rock vs human
-        if type == "rock" && who.type == "human"{attack_factor = type_factor(attack_factor_par: 1.5)}
-        //rock vs elf
-        if type == "rock" && who.type == "elf"{attack_factor = type_factor(attack_factor_par: 1.8)}
-        //elf vs rock
-        if type == "elf" && who.type == "rock"{attack_factor = type_factor(attack_factor_par: 0.5)}
-        //elf vs human
-        if type == "elf" && who.type == "human"{attack_factor = type_factor(attack_factor_par: 0.75)}
-        //if crit
-        //let decimalToInt = NSDecimalNumber(decimal: attack_factor).intValue
-        
+        if type == "human" && who.type == "rock"{attackFactor = factorType(attackFactorParameter: 0.25)}
+        if type == "human" && who.type == "elf"{attackFactor = factorType(attackFactorParameter: 1.5)}
+        if type == "rock" && who.type == "human"{attackFactor = factorType(attackFactorParameter: 1.5)}
+        if type == "rock" && who.type == "elf"{attackFactor = factorType(attackFactorParameter: 1.8)}
+        if type == "elf" && who.type == "rock"{attackFactor = factorType(attackFactorParameter: 0.5)}
+        if type == "elf" && who.type == "human"{attackFactor = factorType(attackFactorParameter: 0.75)}
         if number_crit == 1{
-            crit_factor = 2
-            who.life = who.life - (weapon.damage * attack_factor * crit_factor)
+            critFactor = 2
+            who.life = who.life - (weapon.damage * attackFactor * critFactor)
             print("your attack has crit !!!")
         }else{
-            who.life = who.life - (weapon.damage * attack_factor)
+            who.life = who.life - (weapon.damage * attackFactor)
         }
         //check if character is dead and say it to player
-        character_dead(who: who, attack_factor: attack_factor, crit_factor: crit_factor)
-        
+        IsCharacterDead(who: who, attackFactor: attackFactor, critFactor: critFactor)
     }
     //////////////////////////////////////////////////////////
     ////////function check life return a boolean//////////////
     //////////////////////////////////////////////////////////
-     func check_caracter_life() -> Bool{
+    func checkCharacterLife() -> Bool{
         return life > 0
     }
     //////////////////////////////////////////////////////////
     ////////function type factor//////////////
     //////////////////////////////////////////////////////////
-    func type_factor(attack_factor_par: Decimal) -> Decimal{
-        
+    func factorType(attackFactorParameter: Decimal) -> Decimal{
         var factor: Decimal = 1
-        //var factor depends what kind of character type
-        factor = factor * attack_factor_par
+        factor = factor * attackFactorParameter
         print("attack factor : \(factor)")
-        
         return factor
     }
     ///////////////////////////////////
     ///function check dead character///
     ///////////////////////////////////
-    func character_dead (who: Character, attack_factor: Decimal, crit_factor: Decimal){
+    func IsCharacterDead (who: Character, attackFactor: Decimal, critFactor: Decimal){
         
         if who.life < 0 {
             who.life = 0
         }
         // check figther alive ?
-        if self.check_caracter_life() {
+        if self.checkCharacterLife() {
             // Character to attack alive ?
-            if who.check_caracter_life() {
+            if who.checkCharacterLife() {
                 print(name + " hit " + who.name)
                 //if oponent life < 0 then life = 0
                 who.life = max(who.life, 0)
@@ -104,7 +88,7 @@ class Character {
                 if who.life <= 0 {
                     print(who.name + " is defeted")
                 } else {
-                    print(who.name + " loose \(weapon.damage * attack_factor * crit_factor) life")
+                    print(who.name + " loose \(weapon.damage * attackFactor * critFactor) life")
                 }
                 
             } else {
@@ -114,5 +98,5 @@ class Character {
             print(name + " he is already dead, sorry for you dude :(")
         }
     }
-
+    
 }
