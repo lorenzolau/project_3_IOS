@@ -10,8 +10,8 @@ import Foundation
 
 class Game{
     //var and constant definition
-    var firstTeam = Team()
-    var secondTeam = Team()
+    let firstTeam = Team()
+    let secondTeam = Team()
     var characterNotDouble = [String]() //array with characters
     var choice = 0 //player choice
     var characterName = "" //character name
@@ -20,10 +20,11 @@ class Game{
     var teamWhoReceive: Team  //select team who's recieving damages
     var bool: Bool = true //boolean var for repeat the fight
     var lifecheck: Int = 0 //use for bigening the fight and never choose a dead character
+    var count = 0
     
-    init(teamWhoFight: Team, teamWhoReceive: Team) {
-        self.teamWhoFight = teamWhoFight
-        self.teamWhoReceive = teamWhoReceive
+    init() {
+        self.teamWhoFight = firstTeam
+        self.teamWhoReceive = secondTeam
     }
     
     ///////////////////////////////////////////////
@@ -36,6 +37,7 @@ class Game{
         }
         //call function fight
         fight()
+        print("Number of round : \(count)")
         print("End of game, thanks for playing")
     }
     //////////////////////////////////////////////////////
@@ -64,28 +66,24 @@ class Game{
     ////////////principal fighting function///////////////
     //////////////////////////////////////////////////////
     func fight(){
-        //select a team with function
         selectTeam()
-        //fonction demander au joueur 1 de jouer
-        //fonction demander au joueur 2 de jouer avec parametre différent
         repeat{
-            var figtherCaracter: Character       // Character who fight
-            teamWhoFight.charactersDisplay() //call function to display character in team who is choosen
+            var figtherCaracter: Character
+            teamWhoFight.charactersDisplay()
             print("Select a Character from team : \(teamWhoFight.name) to fight")
             choice = Read().selectValueUnder(index: 3)
-            figtherCaracter = teamWhoFight.charactersInTeam[choice-1] //put the character who's choosen in var figtherCaracter
+            figtherCaracter = teamWhoFight.charactersInTeam[choice-1]
             //check if character choosen is dead
             checkRecieverLife(reciver: figtherCaracter)
             figtherCaracter = teamWhoFight.charactersInTeam[choice-1]
             print("charcater choosen : \(figtherCaracter.name) from team \(teamWhoFight.name)")
-            // if magus then select a team character to heal, he cannot attack
-            let random_chest = Int.random(in: 1 ... 10)  // a random number for new weapon 10% chance
-            //  if let magus = figtherCaracter as? Magus {
-            //     if magus_selected(index_coffre: random_chest, magus: magus, figtherCaracter: figtherCaracter ) != nil{}
-            // }else{
-            if selectCharacter(index_chest: random_chest, figtherCaracter: figtherCaracter ) != nil{}
-            // }
-            //select other team
+            let randomNumberForChest = Int.random(in: 1 ... 10)
+            if figtherCaracter is Magus{
+                if selectMagus(index_chest: randomNumberForChest, figtherCaracter: figtherCaracter as! Magus) != nil{}
+            }
+            else{
+                if selectCharacter(index_chest: randomNumberForChest, figtherCaracter: figtherCaracter ) != nil{}
+            }
             select_choice()
             //check team life if all characters are dead return false and exit while
             if !(teamWhoReceive.check_life()){
@@ -95,6 +93,7 @@ class Game{
                 print("All the characters in team \(teamWhoFight.name) are dead ! \(teamWhoReceive.name) has won! Congrats")
                 bool = false
             }
+            count += 1
         }while  bool == true
     }
     //////////////////////////////////
@@ -143,16 +142,38 @@ class Game{
             choice = Read().selectValueUnder(index: 3)
             characterToAttack = teamWhoReceive.charactersInTeam[choice-1]
             
-            if characterToAttack is Magus && index_chest == 5{
-                print("A new weapon is for you \(figtherCaracter.name) : A Mystic weapon who deals 50 damages")
-                figtherCaracter.weapon = Bigstick()
-            }
-            else{
+            if  index_chest == 5{
+                print("A new weapon is for you \(figtherCaracter.name) : A Mystic weapon who deals 50 damages for all the time")
                 figtherCaracter.weapon = Mysticweapon()
             }
+            
             checkRecieverLife(reciver: characterToAttack)
             figtherCaracter.attack(who: characterToAttack)
             return characterToAttack
+        }else{
+            print("You cannot choose a dead character!")
+            return nil
+        }
+    }
+    //////////////////////////////////////////////////////////
+    //function if magus is selected////
+    //////////////////////////////////////////////////////////
+    func selectMagus(index_chest:Int, figtherCaracter: Magus)-> Character?{
+        var characterToHeal: Character
+        
+        if figtherCaracter.life > 0 {
+            print("You can choose a character to hit from oposent team \(teamWhoFight.name):")
+            teamWhoFight.charactersDisplay()
+            choice = Read().selectValueUnder(index: 3)
+            characterToHeal = teamWhoFight.charactersInTeam[choice-1]
+            
+            if index_chest == 5{
+                print("A new weapon is for you \(figtherCaracter.name) : A Big Stick who heals 50 life points")
+                figtherCaracter.weapon = Bigstick()
+            }
+            checkRecieverLife(reciver: characterToHeal)
+            figtherCaracter.heal(who: characterToHeal)
+            return characterToHeal
         }else{
             print("You cannot choose a dead character!")
             return nil
@@ -192,12 +213,12 @@ class Game{
         
         print("Enter a name for character n°\(i)")
         repeat {
-            let characterNamedouble = getNotEmptyString()
-            if (characterNotDouble.contains(characterNamedouble)){
-                print("The name \(characterNamedouble) already exist")
+            characterName = getNotEmptyString()
+            if (characterNotDouble.contains(characterName)){
+                print("The name \(characterName) already exist")
             }
             else{
-                characterNotDouble.append(characterNamedouble)
+                characterNotDouble.append(characterName)
                 isNewValueAdded = true
             }
         } while isNewValueAdded == false

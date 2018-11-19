@@ -31,7 +31,7 @@ class Magus: Character {
         if  who.type == "elf"{
             heal_factor = heal_factor * 1.20
         }
-        
+        if who.checkCharacterLife(){
         if number_crit == 1{
             
             crit_factor = 2
@@ -42,7 +42,7 @@ class Magus: Character {
             who.life = who.life + (weapon.heal * heal_factor)
         }
         print("\(name) heals \(who.name)  for \(weapon.heal * heal_factor * crit_factor) Life points " )
-        
+        }
         if who.life > who.max_life {
             print(who.name + " is over healed, he's max of life")
             who.life = who.max_life

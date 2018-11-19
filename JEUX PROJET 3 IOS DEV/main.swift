@@ -10,5 +10,5 @@ import Foundation
 
 let start = Game()
 
-start.Game()
+start.play()
 
