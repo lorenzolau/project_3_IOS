@@ -208,18 +208,20 @@ class Game{
     //////////////////////////////////
     //function for testing if name is double
     //////////////////////////////////
-    func nameNotDouble (i: Int)->Bool{
-        var isNewValueAdded: Bool = false
+    func checkNameDouble (i: Int){
+        var isNewValueAdded: Bool = true
         
         print("Enter a name for character n°\(i)")
         repeat {
             characterName = getNotEmptyString()
-            if !(characterNotDouble.contains(characterName)){
+            if (characterNotDouble.contains(characterName)){
+                print("The name \(characterName) already exist")
+            }
+            else{
                 characterNotDouble.append(characterName)
-                isNewValueAdded = true
+                isNewValueAdded = false
             }
         } while isNewValueAdded
-        return isNewValueAdded
     }
     //////////////////////////////////
     // function swich for add a character in a team
@@ -259,13 +261,8 @@ class Game{
             print("2 - Magus (use a stick who heals for 10 life points and his type is an elf, he has 55 life)")
             print("3 - Dwarf (use a Hax who deals 18 damages, his type is human, he has 65 life")
             print("4 - Colosse (use his hands who deals 6 damages, his type is rock, he has 150 life)")
-            //function readline for choice 1 to 4, and nothing else
             choice = Read().selectValueUnder(index: 4)
-            //check if name is double
-            if (nameNotDouble(i : i)){
-                print("The name \(characterName) already exist")
-            }
-            //switch for adding what kind of character is choosen in array
+            checkNameDouble(i : i)
             addCharactersInTeam(itemChoice: teamTurn)
         }
     }
