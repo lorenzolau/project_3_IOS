@@ -17,7 +17,7 @@ class Character {
     var life: Decimal
     let max_life: Decimal
     var crit: Int
-    var type: String
+    let type: String
     
     init(name: String, weapon: Weapon, crit: Int,type: String, max_life: Decimal) {
         self.name = name
