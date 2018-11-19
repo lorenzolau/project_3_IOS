@@ -11,6 +11,6 @@ import Foundation
 class Combattant: Character {
     
     init(name: String) {
-        super.init(name: name, weapon: Sword(), crit: 15,type: "human", max_life: 100)
+        super.init(name: name, weapon: Sword(), crit: 15,type: "human", maxLife: 100)
     }
 }

@@ -15,18 +15,18 @@ class Character {
     let name: String
     var weapon: Weapon
     var life: Decimal
-    let max_life: Decimal
+    let maxLife: Decimal
     var crit: Int
     let type: String
     
-    init(name: String, weapon: Weapon, crit: Int,type: String, max_life: Decimal) {
+    init(name: String, weapon: Weapon, crit: Int,type: String, maxLife: Decimal) {
         self.name = name
         self.weapon = weapon
         self.crit = crit
         self.type = type
         
-        self.max_life = max_life
-        self.life = max_life
+        self.maxLife = maxLife
+        self.life = maxLife
         
     }
     
@@ -34,7 +34,7 @@ class Character {
     ////function attack//////////
     /////////////////////////////
     func attack(who: Character) {
-        let number_crit = Int.random(in: 1 ... (100/crit))
+        let numberCrit = Int.random(in: 1 ... (100/crit))
         var attackFactor: Decimal = 1
         var critFactor: Decimal = 1.00
         print("Type \(type) vs type \(who.type)")
@@ -44,7 +44,7 @@ class Character {
         if type == "rock" && who.type == "elf"{attackFactor = factorType(attackFactorParameter: 1.8)}
         if type == "elf" && who.type == "rock"{attackFactor = factorType(attackFactorParameter: 0.5)}
         if type == "elf" && who.type == "human"{attackFactor = factorType(attackFactorParameter: 0.75)}
-        if number_crit == 1{
+        if numberCrit == 1{
             critFactor = 2
             who.life = who.life - (weapon.damage * attackFactor * critFactor)
             print("your attack has crit !!!")

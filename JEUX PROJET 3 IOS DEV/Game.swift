@@ -79,17 +79,17 @@ class Game{
             print("charcater choosen : \(figtherCaracter.name) from team \(teamWhoFight.name)")
             let randomNumberForChest = Int.random(in: 1 ... 10)
             if figtherCaracter is Magus{
-                if selectMagus(index_chest: randomNumberForChest, figtherCaracter: figtherCaracter as! Magus) != nil{}
+                if selectMagus(indexChest: randomNumberForChest, figtherCaracter: figtherCaracter as! Magus) != nil{}
             }
             else{
-                if selectCharacter(index_chest: randomNumberForChest, figtherCaracter: figtherCaracter ) != nil{}
+                if selectCharacter(indexChest: randomNumberForChest, figtherCaracter: figtherCaracter ) != nil{}
             }
-            select_choice()
+            chooseTeam()
             //check team life if all characters are dead return false and exit while
-            if !(teamWhoReceive.check_life()){
+            if !(teamWhoReceive.isTeamAlife()){
                 print("All the characters in team \(teamWhoReceive.name) are dead ! \(teamWhoFight.name) has won! Congrats")
                 bool = false
-            }else if !(teamWhoFight.check_life()){
+            }else if !(teamWhoFight.isTeamAlife()){
                 print("All the characters in team \(teamWhoFight.name) are dead ! \(teamWhoReceive.name) has won! Congrats")
                 bool = false
             }
@@ -99,7 +99,7 @@ class Game{
     //////////////////////////////////
     //function select team choice
     //////////////////////////////////
-    func select_choice(){
+    func chooseTeam(){
         //select other team
         if teamChoice == 1 {
             teamChoice = 2
@@ -133,7 +133,7 @@ class Game{
     //////////////////////////////////////////////////////////
     //function if an other character is choosen, not magus////
     //////////////////////////////////////////////////////////
-    func selectCharacter(index_chest:Int, figtherCaracter: Character)-> Character?{
+    func selectCharacter(indexChest:Int, figtherCaracter: Character)-> Character?{
         var characterToAttack: Character
         
         if figtherCaracter.life > 0 {
@@ -142,7 +142,7 @@ class Game{
             choice = Read().selectValueUnder(index: 3)
             characterToAttack = teamWhoReceive.charactersInTeam[choice-1]
             
-            if  index_chest == 5{
+            if  indexChest == 5{
                 print("A new weapon is for you \(figtherCaracter.name) : A Mystic weapon who deals 50 damages for all the time")
                 figtherCaracter.weapon = Mysticweapon()
             }
@@ -158,7 +158,7 @@ class Game{
     //////////////////////////////////////////////////////////
     //function if magus is selected////
     //////////////////////////////////////////////////////////
-    func selectMagus(index_chest:Int, figtherCaracter: Magus)-> Character?{
+    func selectMagus(indexChest:Int, figtherCaracter: Magus)-> Character?{
         var characterToHeal: Character
         
         if figtherCaracter.life > 0 {
@@ -167,7 +167,7 @@ class Game{
             choice = Read().selectValueUnder(index: 3)
             characterToHeal = teamWhoFight.charactersInTeam[choice-1]
             
-            if index_chest == 5{
+            if indexChest == 5{
                 print("A new weapon is for you \(figtherCaracter.name) : A Big Stick who heals 50 life points")
                 figtherCaracter.weapon = Bigstick()
             }
@@ -208,20 +208,18 @@ class Game{
     //////////////////////////////////
     //function for testing if name is double
     //////////////////////////////////
-    func nameNotDouble (i: Int){
+    func nameNotDouble (i: Int)->Bool{
         var isNewValueAdded: Bool = false
         
         print("Enter a name for character n°\(i)")
         repeat {
             characterName = getNotEmptyString()
-            if (characterNotDouble.contains(characterName)){
-                print("The name \(characterName) already exist")
-            }
-            else{
+            if !(characterNotDouble.contains(characterName)){
                 characterNotDouble.append(characterName)
                 isNewValueAdded = true
             }
-        } while isNewValueAdded == false
+        } while isNewValueAdded
+        return isNewValueAdded
     }
     //////////////////////////////////
     // function swich for add a character in a team
@@ -264,7 +262,9 @@ class Game{
             //function readline for choice 1 to 4, and nothing else
             choice = Read().selectValueUnder(index: 4)
             //check if name is double
-            nameNotDouble(i : i)
+            if (nameNotDouble(i : i)){
+                print("The name \(characterName) already exist")
+            }
             //switch for adding what kind of character is choosen in array
             addCharactersInTeam(itemChoice: teamTurn)
         }

@@ -11,7 +11,7 @@ import Foundation
 class Colosse: Character{
     
      init(name: String) {
-        super.init(name: name, weapon: Hand(), crit: 15,type: "rock", max_life: 150)
+        super.init(name: name, weapon: Hand(), crit: 15,type: "rock", maxLife: 150)
     }
     
 }
