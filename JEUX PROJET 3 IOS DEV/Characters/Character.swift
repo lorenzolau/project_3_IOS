@@ -46,11 +46,10 @@ class Character {
         if type == "elf" && who.type == "human"{attackFactor = factorType(attackFactorParameter: 0.75)}
         if numberCrit == 1{
             critFactor = 2
-            who.life = who.life - (weapon.damage * attackFactor * critFactor)
             print("your attack has crit !!!")
-        }else{
-            who.life = who.life - (weapon.damage * attackFactor)
         }
+        who.life = who.life - (weapon.damage * attackFactor * critFactor)
+        
         //check if character is dead and say it to player
         IsCharacterDead(who: who, attackFactor: attackFactor, critFactor: critFactor)
     }
@@ -74,28 +73,21 @@ class Character {
     ///////////////////////////////////
     func IsCharacterDead (who: Character, attackFactor: Decimal, critFactor: Decimal){
         
-        if who.life < 0 {
-            who.life = 0
-        }
-        // check figther alive ?
         if self.checkCharacterLife() {
             // Character to attack alive ?
             if who.checkCharacterLife() {
                 print(name + " hit " + who.name)
                 //if oponent life < 0 then life = 0
                 who.life = max(who.life, 0)
-                
                 if who.life <= 0 {
                     print(who.name + " is defeted")
-                } else {
-                    print(who.name + " loose \(weapon.damage * attackFactor * critFactor) life")
                 }
-                
+                print(who.name + " loose \(weapon.damage * attackFactor * critFactor) life")
             } else {
                 print(who.name + " is dead !")
             }
         } else {
-            print(name + " he is already dead, sorry for you dude :(")
+            print(name + "  is dead, choose another")
         }
     }
     

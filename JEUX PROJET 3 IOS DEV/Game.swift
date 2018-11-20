@@ -110,12 +110,14 @@ class Game{
             teamWhoFight = firstTeam
             teamWhoReceive = secondTeam
         }
+        print("////////////////////////////////////")
     }
     //////////////////////////////////
     //function for select team who act
     //////////////////////////////////
     func selectTeam() {
         //you can select a team who bigin the fight, (maybe random in next version)
+        print("////////////////////////////////////")
         print("Select a team ")
         print("1 - \(firstTeam.name)")
         print("2 - \(secondTeam.name)")
