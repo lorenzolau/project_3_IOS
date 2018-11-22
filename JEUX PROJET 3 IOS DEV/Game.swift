@@ -12,7 +12,7 @@ class Game{
     //var and constant definition
     let firstTeam = Team()
     let secondTeam = Team()
-    var characterNotDouble = [String]() //array with characters
+    var characterNotDouble = [String]() //array with characters names to check
     var choice = 0 //player choice
     var characterName = "" //character name
     var teamChoice: Int = 0 //for choosing team initialize
@@ -45,8 +45,7 @@ class Game{
     //////////////////////////////////////////////////////
     func createTeam(item: Int) {
         
-        // characters.removeAll() //remove array for creating 2th team
-        var teamname = "" //name of the team
+        var teamname = ""
         print("Input team name n°\(item)")
         repeat{
             let read = Read()
@@ -58,9 +57,7 @@ class Game{
         else{
             secondTeam.name = teamname
         }
-        printDescritpion(item: item) // description of characters to make a choice for players
-        //team.charactersInTeam = characters // add characters in team
-        // teams.append(firstTeam)  // add team in array
+        printDescritpion(item: item)
     }
     //////////////////////////////////////////////////////
     ////////////principal fighting function///////////////
@@ -86,16 +83,11 @@ class Game{
             }
             chooseTeam()
             //check team life if all characters are dead return false and exit while
-            if !(teamWhoReceive.isTeamAlife()){
-                print("All the characters in team \(teamWhoReceive.name) are dead ! \(teamWhoFight.name) has won! Congrats")
-                bool = false
-            }else if !(teamWhoFight.isTeamAlife()){
-                print("All the characters in team \(teamWhoFight.name) are dead ! \(teamWhoReceive.name) has won! Congrats")
-                bool = false
-            }
+            declareWinner(teamWhoReceive: teamWhoReceive, teamWhoFight: teamWhoFight)
             count += 1
         }while  bool == true
     }
+    
     //////////////////////////////////
     //function select team choice
     //////////////////////////////////
@@ -266,6 +258,18 @@ class Game{
             choice = Read().selectValueUnder(index: 4)
             checkNameDouble(i : i)
             addCharactersInTeam(itemChoice: teamTurn)
+        }
+    }
+    //////////////////////////////////
+    //function declare winner ////////
+    //////////////////////////////////
+    func declareWinner(teamWhoReceive: Team, teamWhoFight: Team){
+        if !(teamWhoReceive.isTeamAlife()){
+            print("All the characters in team \(teamWhoReceive.name) are dead ! \(teamWhoFight.name) has won! Congrats")
+            bool = false
+        }else if !(teamWhoFight.isTeamAlife()){
+            print("All the characters in team \(teamWhoFight.name) are dead ! \(teamWhoReceive.name) has won! Congrats")
+            bool = false
         }
     }
 }
