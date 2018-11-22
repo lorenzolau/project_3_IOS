@@ -31,27 +31,57 @@ class Character {
     }
     
     /////////////////////////////
-    ////function attack//////////
+    ////function attack a character in oposent team//////////
     /////////////////////////////
-    func attack(who: Character) {
+    func attack(characterToAttack: Character) {
         let numberCrit = Int.random(in: 1 ... (100/crit))
         var attackFactor: Decimal = 1
         var critFactor: Decimal = 1.00
-        print("Type \(type) vs type \(who.type)")
-        if type == "human" && who.type == "rock"{attackFactor = factorType(attackFactorParameter: 0.25)}
-        if type == "human" && who.type == "elf"{attackFactor = factorType(attackFactorParameter: 1.5)}
-        if type == "rock" && who.type == "human"{attackFactor = factorType(attackFactorParameter: 1.5)}
-        if type == "rock" && who.type == "elf"{attackFactor = factorType(attackFactorParameter: 1.8)}
-        if type == "elf" && who.type == "rock"{attackFactor = factorType(attackFactorParameter: 0.5)}
-        if type == "elf" && who.type == "human"{attackFactor = factorType(attackFactorParameter: 0.75)}
+        
+        print("Type \(type) vs type \(characterToAttack.type)")
+        
+        if type == "human" {
+            if characterToAttack.type == "elf"{
+                attackFactor = factorType(attackFactorParameter: 1.5)
+            }
+            else{
+                if characterToAttack.type == "rock"{
+                    attackFactor = factorType(attackFactorParameter: 0.25)
+                }
+            }
+        }
+        else{
+            if type == "rock"{
+                if characterToAttack.type == "human"{
+                    attackFactor = factorType(attackFactorParameter: 1.5)
+                }
+                else{
+                    if characterToAttack.type == "elf"{
+                        attackFactor = factorType(attackFactorParameter: 1.8)
+                    }
+                }
+            }
+            else{
+                if type == "elf"{
+                    if characterToAttack.type == "rock"{
+                        attackFactor = factorType(attackFactorParameter: 0.5)
+                    }
+                    else{
+                        if characterToAttack.type == "human"{
+                            attackFactor = factorType(attackFactorParameter: 0.75)
+                        }
+                    }
+                }
+            }
+        }
         if numberCrit == 1{
             critFactor = 2
             print("your attack has crit !!!")
         }
-        who.life = who.life - (weapon.damage * attackFactor * critFactor)
+        characterToAttack.life = characterToAttack.life - (weapon.damage * attackFactor * critFactor)
         
         //check if character is dead and say it to player
-        IsCharacterDead(who: who, attackFactor: attackFactor, critFactor: critFactor)
+        IsCharacterDead(character: characterToAttack, attackFactor: attackFactor, critFactor: critFactor)
     }
     //////////////////////////////////////////////////////////
     ////////function check life return a boolean//////////////
@@ -71,20 +101,20 @@ class Character {
     ///////////////////////////////////
     ///function check dead character///
     ///////////////////////////////////
-    func IsCharacterDead (who: Character, attackFactor: Decimal, critFactor: Decimal){
+    func IsCharacterDead (character: Character, attackFactor: Decimal, critFactor: Decimal){
         
         if self.checkCharacterLife() {
             // Character to attack alive ?
-            if who.checkCharacterLife() {
-                print(name + " hit " + who.name)
+            if character.checkCharacterLife() {
+                print(name + " hit " + character.name)
                 //if oponent life < 0 then life = 0
-                who.life = max(who.life, 0)
-                if who.life <= 0 {
-                    print(who.name + " is defeted")
+                character.life = max(character.life, 0)
+                if character.life <= 0 {
+                    print(character.name + " is defeted")
                 }
-                print(who.name + " loose \(weapon.damage * attackFactor * critFactor) life")
+                print(character.name + " loose \(weapon.damage * attackFactor * critFactor) life")
             } else {
-                print(who.name + " is dead !")
+                print(character.name + " is dead !")
             }
         } else {
             print(name + "  is dead, choose another")

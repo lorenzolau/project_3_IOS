@@ -18,34 +18,34 @@ class Magus: Character {
     /////////////////////////////
     ////function healing////////
     /////////////////////////////
-    func heal(who: Character) {
+    func heal(characterToHeal: Character) {
         
         let numberCrit = Int.random(in: 1 ... (100/crit)) // random number for critical heal
         var healFactor: Decimal = 1.00 // heal factor it depends of character type
         var critFactor: Decimal = 1.00 // crit factor
         //healing a type rock
-        if  who.type == "rock"{
+        if  characterToHeal.type == "rock"{
             healFactor = healFactor/4.00
         }
         //healing a type elf
-        if  who.type == "elf"{
+        if  characterToHeal.type == "elf"{
             healFactor = healFactor * 1.20
         }
-        if who.checkCharacterLife(){
+        if characterToHeal.checkCharacterLife(){
             if numberCrit == 1{
                 
                 critFactor = 2
-                who.life = who.life + (weapon.heal * healFactor * critFactor)
+                characterToHeal.life = characterToHeal.life + (weapon.heal * healFactor * critFactor)
                 print("your heal has crit !!!")
                 
             }else{
-                who.life = who.life + (weapon.heal * healFactor)
+                characterToHeal.life = characterToHeal.life + (weapon.heal * healFactor)
             }
-            print("\(name) heals \(who.name)  for \(weapon.heal * healFactor * critFactor) Life points " )
+            print("\(name) heals \(characterToHeal.name)  for \(weapon.heal * healFactor * critFactor) Life points " )
         }
-        if who.life > who.maxLife {
-            print(who.name + " is over healed, he's max of life")
-            who.life = who.maxLife
+        if characterToHeal.life > characterToHeal.maxLife {
+            print(characterToHeal.name + " is over healed, he's max of life")
+            characterToHeal.life = characterToHeal.maxLife
             
         }
     }

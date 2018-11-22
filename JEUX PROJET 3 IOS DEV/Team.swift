@@ -11,12 +11,12 @@ import Foundation
 class Team {
     var name = "" //name of the team
     var charactersInTeam = [Character]()
-    var typeOfSpell: String = ""
     
     ////////////////////////////////////////////////
     //////// function who display characters////////
     ////////////////////////////////////////////////
     func charactersDisplay(){
+        var typeOfSpell: String
         for i in 0..<charactersInTeam.count{
             let displayDescription: Character = charactersInTeam[i]
             if displayDescription.checkCharacterLife() {
