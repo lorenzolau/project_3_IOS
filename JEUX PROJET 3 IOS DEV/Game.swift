@@ -9,12 +9,9 @@
 import Foundation
 //commentaire class game
 class Game{
-    //var and constant definition
-    let firstTeam = Team() //
-    let secondTeam = Team() //
-    var charactersNames = [String]() //array with characters names to check
-    //var userChoice = 0 //player choice
-    // var characterName = "" //character name
+    let firstTeam = Team() //propriety for the first team
+    let secondTeam = Team() //propriety for the second team
+    var charactersNames = [String]() //array only for including names created from players to check if they are double
     var teamChoice: Int = 0 //for choosing team initialize
     var teamWhoFight: Team //select team who's fighting
     var teamWhoReceive: Team  //select team who's recieving damages
@@ -185,7 +182,6 @@ class Game{
             else{
                 isCharacterAlive = false
                 print("You cannot choose a dead character! Choose another")
-                //userChoice = Read().selectValueUnder(index: 3)
             }
         } while !isCharacterAlive
         return userChoice
