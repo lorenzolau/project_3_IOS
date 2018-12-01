@@ -7,19 +7,19 @@
 //
 
 import Foundation
-
+//commentaire class game
 class Game{
     //var and constant definition
-    let firstTeam = Team()
-    let secondTeam = Team()
+    let firstTeam = Team() //
+    let secondTeam = Team() //
     var charactersNames = [String]() //array with characters names to check
-    var choice = 0 //player choice
-    var characterName = "" //character name
+    //var userChoice = 0 //player choice
+    // var characterName = "" //character name
     var teamChoice: Int = 0 //for choosing team initialize
     var teamWhoFight: Team //select team who's fighting
     var teamWhoReceive: Team  //select team who's recieving damages
     var isBothTeamsAlive: Bool = true //boolean var for repeat the fight
-    var numberOfRounds = 0
+    var numberOfRounds = 0 //
     
     init() {
         self.teamWhoFight = firstTeam
@@ -70,15 +70,15 @@ class Game{
             
             //choice - 1 to recup first element of array
             //figtherCaracter = teamWhoFight.charactersInTeam[choice-1]
-            selectCharacterAlive()
-            figtherCaracter = teamWhoFight.charactersInTeam[choice-1]
+            let userChoice = selectCharacterAlive(team: teamWhoFight)
+            figtherCaracter = teamWhoFight.charactersInTeam[userChoice-1]
             print("charcater choosen : \(figtherCaracter.name) from team \(teamWhoFight.name)")
             let randomNumberForChest = Int.random(in: 1 ... 10)
             if figtherCaracter is Magus{
                 if heal(indexChest: randomNumberForChest, magus: figtherCaracter as! Magus) != nil{}
             }
             else{
-                if attack(indexChest: randomNumberForChest, character: figtherCaracter ) != nil{}
+                if PerformAttack(indexChest: randomNumberForChest, character: figtherCaracter ) != nil{}
             }
             switchTeam()
             //check team life, if all characters are dead in one team, return false and exit while
@@ -88,7 +88,7 @@ class Game{
     }
     
     //////////////////////////////////
-    //function select team choice
+    //function to switch to another team
     //////////////////////////////////
     func switchTeam(){
         //select other team
@@ -126,21 +126,20 @@ class Game{
     //////////////////////////////////////////////////////////
     //function if an other character is choosen, not magus////
     //////////////////////////////////////////////////////////
-    func attack(indexChest:Int, character: Character)-> Character?{
+    func PerformAttack(indexChest:Int, character: Character)-> Character?{
         var characterToAttack: Character
         
         if character.life > 0 {
+            
             print("You can choose a character to hit from oposent team \(teamWhoReceive.name):")
             teamWhoReceive.charactersDisplay()
-            choice = Read().selectValueUnder(index: 3)
-            characterToAttack = teamWhoReceive.charactersInTeam[choice-1]
-            // if random number = 5
+            let userChoice = selectCharacterAlive(team: teamWhoReceive)
+            characterToAttack = teamWhoReceive.charactersInTeam[userChoice-1]
+            //random number to discover a chest
             if  indexChest == 5{
                 print("A new weapon is for you \(character.name) : A Mystic weapon who deals 50 damages for all the time")
                 character.weapon = Mysticweapon()
             }
-            
-            selectCharacterAlive()
             character.attack(characterToAttack: characterToAttack)
             return characterToAttack
         }else{
@@ -157,14 +156,13 @@ class Game{
         if magus.life > 0 {
             print("You can choose a character to hit from oposent team \(teamWhoFight.name):")
             teamWhoFight.charactersDisplay()
-            choice = Read().selectValueUnder(index: 3)
-            characterToHeal = teamWhoFight.charactersInTeam[choice-1]
-            
+            let userChoice = selectCharacterAlive(team: teamWhoFight)
+            characterToHeal = teamWhoFight.charactersInTeam[userChoice-1]
+            //random number to discover a chest
             if indexChest == 5{
                 print("A new weapon is for you \(magus.name) : A Big Stick who heals 50 life points")
                 magus.weapon = Bigstick()
             }
-            selectCharacterAlive()
             magus.heal(characterToHeal: characterToHeal)
             return characterToHeal
         }else{
@@ -172,23 +170,25 @@ class Game{
             return nil
         }
     }
-    //////////////////////////////////////////
-    //function to check if reciver is alive///
-    //////////////////////////////////////////
-    func selectCharacterAlive (){
+    ////////////////////////////////////////////////////////
+    //function to return userchoice if character is alive///
+    ///////////////////////////////////////////////////////
+    func selectCharacterAlive (team: Team)->Int{
         //repeat here the choice if character choosen is dead
         var isCharacterAlive: Bool = false
+        var userChoice: Int
         repeat {
-            choice = Read().selectValueUnder(index: 3)
-            if teamWhoFight.charactersInTeam[choice-1].life > 0{
+            userChoice = Read().selectValueUnder(index: 3)
+            if team.charactersInTeam[userChoice-1].life > 0{
                 isCharacterAlive = true
             }
             else{
                 isCharacterAlive = false
                 print("You cannot choose a dead character! Choose another")
-                //choice = Read().selectValueUnder(index: 3)
+                //userChoice = Read().selectValueUnder(index: 3)
             }
         } while !isCharacterAlive
+        return userChoice
     }
     //////////////////////////////////
     //function for testing if name is double
@@ -204,7 +204,8 @@ class Game{
     //////////////////////////////////
     //function for testing if name is double
     //////////////////////////////////
-    func getUniqueName (index: Int){
+    func getUniqueName (index: Int) -> String{
+        var characterName: String
         var isNewValueAdded: Bool = false
         
         print("Enter a name for character n°\(index)")
@@ -218,12 +219,13 @@ class Game{
                 isNewValueAdded = true
             }
         } while !isNewValueAdded
+        return characterName
     }
     //////////////////////////////////
     // function swich for add a character in a team
     //////////////////////////////////
-    func addCharactersInTeam(itemChoice: Team){
-        switch choice {
+    func addCharacterInTeam(itemChoice: Team, characterName: String, userChoice: Int){
+        switch userChoice {
         case 1:
             let character = Combattant(name: characterName)
             itemChoice.charactersInTeam.append(character)
@@ -257,13 +259,13 @@ class Game{
             print("2 - Magus (use a stick who heals for 10 life points and his type is an elf, he has 55 life)")
             print("3 - Dwarf (use a Hax who deals 18 damages, his type is human, he has 65 life")
             print("4 - Colosse (use his hands who deals 6 damages, his type is rock, he has 150 life)")
-            choice = Read().selectValueUnder(index: 4)
-            getUniqueName(index : i)
-            addCharactersInTeam(itemChoice: teamTurn)
+            let userChoice = Read().selectValueUnder(index: 4)
+            let characterName = getUniqueName(index : i)
+            addCharacterInTeam(itemChoice: teamTurn, characterName: characterName, userChoice: userChoice)
         }
     }
     //////////////////////////////////
-    //function declare winner ////////
+    //function declare winner team////////
     //////////////////////////////////
     func declareWinner(teamWhoReceive: Team, teamWhoFight: Team){
         if !(teamWhoReceive.isTeamAlife()){
