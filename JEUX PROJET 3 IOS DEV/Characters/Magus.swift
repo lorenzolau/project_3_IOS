@@ -12,7 +12,7 @@ class Magus: Character {
     
     
     init(name: String) {
-        super.init(name: name, weapon: Stick(), crit: 20,type: "healer", maxLife: 55)
+        super.init(name: name, weapon: Stick(), crit: 20,type: "healer", maxLife: 55, classType: "Magus")
     }
     
     /////////////////////////////

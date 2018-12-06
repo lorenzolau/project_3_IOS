@@ -11,6 +11,6 @@ import Foundation
 class Dwarf: Character {
     
      init(name: String) {
-        super.init(name: name, weapon: Hax(), crit: 18,type: "elf", maxLife: 65)
+        super.init(name: name, weapon: Hax(), crit: 18,type: "elf", maxLife: 65, classType: "Dwarf")
     }
 }

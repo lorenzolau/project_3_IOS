@@ -16,19 +16,20 @@ class Team {
     //////// function who display characters////////
     ////////////////////////////////////////////////
     func charactersDisplay(){
+        
         var typeOfSpell: String
         for i in 0..<charactersInTeam.count{
-            let displayDescription: Character = charactersInTeam[i]
-            if displayDescription.checkCharacterLife() {
-                if displayDescription is Magus{
-                    typeOfSpell = "Heal for \(displayDescription.weapon.heal) life points"
+            let currentCharacter: Character = charactersInTeam[i]
+            if currentCharacter.checkCharacterLife() {
+                if currentCharacter is Magus{
+                    typeOfSpell = "Heal for \(currentCharacter.weapon.heal) life points"
                 } else {
-                    typeOfSpell = "Deal \(displayDescription.weapon.damage) damages"
+                    typeOfSpell = "Deal \(currentCharacter.weapon.damage) damages"
                 }
-                print("N°\(i + 1) - \(displayDescription.name) is a \(displayDescription) of type \(displayDescription.type)"
-                    + " he has : \(displayDescription.life) life, he can \(typeOfSpell)")
+                print("N°\(i + 1) - \(currentCharacter.name) is a \(currentCharacter.classType) of type \(currentCharacter.type)"
+                    + " he has : \(currentCharacter.life) life, he can \(typeOfSpell)")
             } else {
-                print(displayDescription.name + " is dead")
+                print(currentCharacter.name + " is dead")
             }
         }
     }

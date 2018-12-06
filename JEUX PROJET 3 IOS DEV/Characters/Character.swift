@@ -18,8 +18,9 @@ class Character {
     let maxLife: Decimal
     var crit: Int
     let type: String
+    let classType: String
     
-    init(name: String, weapon: Weapon, crit: Int,type: String, maxLife: Decimal) {
+    init(name: String, weapon: Weapon, crit: Int,type: String, maxLife: Decimal,  classType: String) {
         self.name = name
         self.weapon = weapon
         self.crit = crit
@@ -27,6 +28,7 @@ class Character {
         
         self.maxLife = maxLife
         self.life = maxLife
+        self.classType = classType
         
     }
     
@@ -109,10 +111,10 @@ class Character {
                 print(name + " hit " + character.name)
                 //if oponent life < 0 then life = 0
                 character.life = max(character.life, 0)
+                print(character.name + " loose \(weapon.damage * attackFactor * critFactor) life")
                 if character.life <= 0 {
                     print(character.name + " is defeted")
                 }
-                print(character.name + " loose \(weapon.damage * attackFactor * critFactor) life")
             } else {
                 print(character.name + " is dead !")
             }
