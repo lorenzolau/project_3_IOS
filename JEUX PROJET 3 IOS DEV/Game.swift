@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//commentaire class game
+//Principal class 
 class Game{
     let firstTeam = Team() // team for first player
     let secondTeam = Team() //team for second player
@@ -16,7 +16,7 @@ class Game{
     var teamWhoFight: Team //select team who's fighting
     var teamWhoReceive: Team  //select team who's recieving damages
     var isBothTeamsAlive: Bool = true //boolean var for continue the fight
-    var numberOfRounds = 0 //
+    var numberOfRounds = 0 //stak in var nb of rounds for display it at the and of game
     
     init() {
         self.teamWhoFight = firstTeam
@@ -71,10 +71,10 @@ class Game{
             print("charcater choosen : \(figtherCaracter.name) from team \(teamWhoFight.name)")
             let randomNumberForChest = Int.random(in: 1 ... 10)
             if figtherCaracter is Magus{
-                 heal(indexChest: randomNumberForChest, magus: figtherCaracter as! Magus)
+                heal(indexChest: randomNumberForChest, magus: figtherCaracter as! Magus)
             }
             else{
-                    PerformAttack(indexChest: randomNumberForChest, character: figtherCaracter )
+                PerformAttack(indexChest: randomNumberForChest, character: figtherCaracter )
             }
             switchTeam()
             //check team life, if all characters are dead in one team, return false and exit while
@@ -124,32 +124,32 @@ class Game{
     //////////////////////////////////////////////////////////
     func PerformAttack(indexChest:Int, character: Character){
         var characterToAttack: Character
-            print("You can choose a character to hit from oposent team \(teamWhoReceive.name):")
-            teamWhoReceive.charactersDisplay()
-            let userChoice = selectCharacterAlive(team: teamWhoReceive)
-            characterToAttack = teamWhoReceive.charactersInTeam[userChoice-1]
-            //random number to discover a chest
-            if  indexChest == 5{
-                print("A new weapon is for you \(character.name) : A Mystic weapon who deals 50 damages for all the time")
-                character.weapon = Mysticweapon()
-            }
-            character.attack(characterToAttack: characterToAttack)
+        print("You can choose a character to hit from oposent team \(teamWhoReceive.name):")
+        teamWhoReceive.charactersDisplay()
+        let userChoice = selectCharacterAlive(team: teamWhoReceive)
+        characterToAttack = teamWhoReceive.charactersInTeam[userChoice-1]
+        //random number to discover a chest
+        if  indexChest == 5{
+            print("A new weapon is for you \(character.name) : A Mystic weapon who deals 50 damages for all the time")
+            character.weapon = Mysticweapon()
+        }
+        character.attack(characterToAttack: characterToAttack)
     }
     //////////////////////////////////////////////////////////
     //function if magus is selected////
     //////////////////////////////////////////////////////////
     func heal(indexChest:Int, magus: Magus){
         var characterToHeal: Character
-            print("You can choose a character to hit from oposent team \(teamWhoFight.name):")
-            teamWhoFight.charactersDisplay()
-            let userChoice = selectCharacterAlive(team: teamWhoFight)
-            characterToHeal = teamWhoFight.charactersInTeam[userChoice-1]
-            //random number to discover a chest
-            if indexChest == 5{
-                print("A new weapon is for you \(magus.name) : A Big Stick who heals 50 life points")
-                magus.weapon = Bigstick()
-            }
-            magus.heal(characterToHeal: characterToHeal)
+        print("You can choose a character to hit from oposent team \(teamWhoFight.name):")
+        teamWhoFight.charactersDisplay()
+        let userChoice = selectCharacterAlive(team: teamWhoFight)
+        characterToHeal = teamWhoFight.charactersInTeam[userChoice-1]
+        //random number to discover a chest
+        if indexChest == 5{
+            print("A new weapon is for you \(magus.name) : A Big Stick who heals 50 life points")
+            magus.weapon = Bigstick()
+        }
+        magus.heal(characterToHeal: characterToHeal)
     }
     ////////////////////////////////////////////////////////
     //function to return userchoice if character is alive///
@@ -171,7 +171,7 @@ class Game{
         return userChoice
     }
     //////////////////////////////////
-    //function for testing if name is double
+    //function who returns the user string while is not empty
     //////////////////////////////////
     func getNotEmptyString() -> String {
         var userEntry: String
@@ -182,7 +182,7 @@ class Game{
         return userEntry
     }
     //////////////////////////////////
-    //function for testing if name is double
+    //function for testing if name exist
     //////////////////////////////////
     func getUniqueName (index: Int) -> String{
         var characterName: String
@@ -223,16 +223,9 @@ class Game{
         }
     }
     /////////////////////////////////////////////////
-    //////// function description and print it///////
+    //////// function to describe and select character to create the team///////
     /////////////////////////////////////////////////
     func printDescritpion(item: Int){
-       /* var teamTurn: Team
-        if item == 1 {
-            teamTurn = firstTeam
-        }
-        else{
-            teamTurn = secondTeam
-        }*/
         for i in 1...3 {
             print("Select character n°\(i)")
             print("1 - Figther (use a sword who deals 10 damages and his type is human, he has 100 life)")
@@ -241,14 +234,11 @@ class Game{
             print("4 - Colosse (use his hands who deals 6 damages, his type is rock, he has 150 life)")
             let userChoice = Read().selectValueUnder(index: 4)
             let characterName = getUniqueName(index : i)
-           // addCharacterInTeam(itemChoice: teamTurn, characterName: characterName, userChoice: userChoice)
             if item == 1 {
                 addCharacterInTeam(itemChoice: firstTeam, characterName: characterName, userChoice: userChoice)
-
             }
             else{
                 addCharacterInTeam(itemChoice: secondTeam, characterName: characterName, userChoice: userChoice)
-
             }
         }
     }

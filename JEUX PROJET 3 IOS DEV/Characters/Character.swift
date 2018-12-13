@@ -8,19 +8,25 @@
 
 import Foundation
 
-// Create characters
-
+//class names used in function character display list
+enum ClassType {
+    case figther
+    case magus
+    case dwarf
+    case colosse
+}
+//mother class for class Combattant, Magus, Dwarf, Colosse
 class Character {
     
-    let name: String
-    var weapon: Weapon
-    var life: Decimal
-    let maxLife: Decimal
-    var crit: Int
-    let type: String
-    let classType: String
+    let name: String // name of the characters
+    var weapon: Weapon //character's weapon
+    var life: Decimal //life of character details in class girl
+    let maxLife: Decimal //constant to block over healing and avoid to pass under 0
+    var crit: Int //bonus var to multiply the hit by 2
+    let type: String //character type or race
+    let classType: ClassType //names of class girl
     
-    init(name: String, weapon: Weapon, crit: Int,type: String, maxLife: Decimal,  classType: String) {
+    init(name: String, weapon: Weapon, crit: Int,type: String, maxLife: Decimal, classType: ClassType) {
         self.name = name
         self.weapon = weapon
         self.crit = crit
@@ -37,9 +43,39 @@ class Character {
     /////////////////////////////
     func attack(characterToAttack: Character) {
         let numberCrit = Int.random(in: 1 ... (100/crit))
-        var attackFactor: Decimal = 1
+        var attackFactor: Decimal = 1.00
         var critFactor: Decimal = 1.00
         
+        attackFactor = compareType(characterToAttack: characterToAttack)
+        if numberCrit == 1{
+            critFactor = 2
+            print("your attack has crit !!!")
+        }
+        characterToAttack.life -=  (weapon.damage * attackFactor * critFactor)
+        
+        //check if character is dead and say it to player
+        IsCharacterDead(character: characterToAttack, attackFactor: attackFactor, critFactor: critFactor)
+    }
+    //////////////////////////////////////////////////////////
+    ////////function check self life and return a boolean//////////////
+    //////////////////////////////////////////////////////////
+    func checkCharacterLife() -> Bool{
+        return life > 0
+    }
+    //////////////////////////////////////////////////////////
+    ////////function who returns a décimal factor//////////////
+    //////////////////////////////////////////////////////////
+    func factorType(attackFactorParameter: Decimal) -> Decimal{
+        var factor: Decimal = 1
+        factor = factor * attackFactorParameter
+        print("attack factor : \(factor)")
+        return factor
+    }
+    ///////////////////////////////////
+    ///function compare type and return attack factor///
+    ///////////////////////////////////
+    func compareType (characterToAttack: Character)->Decimal{
+        var attackFactor: Decimal = 1.00
         print("Type \(type) vs type \(characterToAttack.type)")
         
         if type == "human" {
@@ -76,37 +112,15 @@ class Character {
                 }
             }
         }
-        if numberCrit == 1{
-            critFactor = 2
-            print("your attack has crit !!!")
-        }
-        characterToAttack.life = characterToAttack.life - (weapon.damage * attackFactor * critFactor)
-        
-        //check if character is dead and say it to player
-        IsCharacterDead(character: characterToAttack, attackFactor: attackFactor, critFactor: critFactor)
-    }
-    //////////////////////////////////////////////////////////
-    ////////function check life return a boolean//////////////
-    //////////////////////////////////////////////////////////
-    func checkCharacterLife() -> Bool{
-        return life > 0
-    }
-    //////////////////////////////////////////////////////////
-    ////////function type factor//////////////
-    //////////////////////////////////////////////////////////
-    func factorType(attackFactorParameter: Decimal) -> Decimal{
-        var factor: Decimal = 1
-        factor = factor * attackFactorParameter
-        print("attack factor : \(factor)")
-        return factor
+        return attackFactor
     }
     ///////////////////////////////////
-    ///function check dead character///
+    ///function print somthing if a character is hit and his life is < 0 ///
     ///////////////////////////////////
     func IsCharacterDead (character: Character, attackFactor: Decimal, critFactor: Decimal){
         
         if self.checkCharacterLife() {
-            // Character to attack alive ?
+            //security check : is Character to attack alive ?
             if character.checkCharacterLife() {
                 print(name + " hit " + character.name)
                 //if oponent life < 0 then life = 0

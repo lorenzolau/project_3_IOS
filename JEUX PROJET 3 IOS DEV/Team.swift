@@ -13,7 +13,7 @@ class Team {
     var charactersInTeam = [Character]()
     
     ////////////////////////////////////////////////
-    //////// function who display characters////////
+    //////// function who display characters and some details////////
     ////////////////////////////////////////////////
     func charactersDisplay(){
         
