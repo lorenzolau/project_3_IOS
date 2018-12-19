@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class magus details herited from Character
 class Magus: Character {
     
     

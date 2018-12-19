@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class colosse details herited from Character
 class Colosse: Character{
     
      init(name: String) {

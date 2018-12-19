@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class dwarf details herited from Character
 class Dwarf: Character {
     
      init(name: String) {

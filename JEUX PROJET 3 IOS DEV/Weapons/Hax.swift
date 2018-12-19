@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class Hax herited from Weapon
 class Hax: Weapon{
     
     init(){

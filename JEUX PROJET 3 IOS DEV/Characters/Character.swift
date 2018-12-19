@@ -8,14 +8,14 @@
 
 import Foundation
 
-//class names used in function character display list
+//enumeration ClassType names used in function character display list
 enum ClassType {
     case figther
     case magus
     case dwarf
     case colosse
 }
-//mother class for class Combattant, Magus, Dwarf, Colosse
+//mother class for class Combattant, Magus, Dwarf, Colosse who define a character
 class Character {
     
     let name: String // name of the characters
@@ -115,7 +115,7 @@ class Character {
         return attackFactor
     }
     ///////////////////////////////////
-    ///function print somthing if a character is hit and his life is < 0 ///
+    ///function who print infos if a character is hit and his life is < 0 ///
     ///////////////////////////////////
     func IsCharacterDead (character: Character, attackFactor: Decimal, critFactor: Decimal){
         

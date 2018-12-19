@@ -8,7 +8,7 @@
 
 import Foundation
 ////////////////////////////////////////////////
-// create Read object for readline and return an int or string
+// class Read with 2 functions to read the value choosen and return an int or string
 ///////////////////////////////////////////////
 class Read {
     
@@ -17,10 +17,8 @@ class Read {
         guard let dataString = readLine() else { return "" }
         return dataString
     }
-    
-
     ///////////////////////////////////////
-    // function userChoice with readline()
+    // return a Int under or egal at index with number choosen with readline()
     //////////////////////////////////////
     func selectValueUnder (index: Int) -> Int{
         repeat {

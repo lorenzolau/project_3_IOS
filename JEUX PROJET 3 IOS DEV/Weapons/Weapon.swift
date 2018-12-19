@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//mother class for weapons
 class Weapon {
     
     var damage: Decimal

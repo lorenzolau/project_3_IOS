@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class Mysticweapon herited from Weapon
 class Mysticweapon: Weapon{
     
     init(){

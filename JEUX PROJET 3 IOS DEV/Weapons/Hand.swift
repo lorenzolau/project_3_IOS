@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class Hand herited from Weapon
 class Hand: Weapon{
     
     init(){

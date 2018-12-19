@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class Sword herited from Weapon
 class Sword: Weapon{
     
      init() {

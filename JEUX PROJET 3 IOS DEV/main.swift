@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//file main just use for create object start to call function play in class Game and start the game
 let start = Game()
 
 start.play()

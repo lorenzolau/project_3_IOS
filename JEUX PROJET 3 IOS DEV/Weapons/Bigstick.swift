@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class Bigstick herited from Weapon
 class Bigstick: Weapon{
     
     init(){

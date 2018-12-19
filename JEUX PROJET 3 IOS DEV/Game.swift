@@ -7,14 +7,14 @@
 //
 
 import Foundation
-//Principal class 
+//Principal class create teams and characters and prepare the fight beetwen 2 teams
 class Game{
     let firstTeam = Team() // team for first player
     let secondTeam = Team() //team for second player
     var charactersNames = [String]() //array only for including names created from players to check if they are double
     var teamChoice: Int = 0 //index for the team who's playing
-    var teamWhoFight: Team //select team who's fighting
-    var teamWhoReceive: Team  //select team who's recieving damages
+    var teamWhoFight: Team // team who is fighting
+    var teamWhoReceive: Team  // team who is recieving damages
     var isBothTeamsAlive: Bool = true //boolean var for continue the fight
     var numberOfRounds = 0 //stak in var nb of rounds for display it at the and of game
     
@@ -36,7 +36,7 @@ class Game{
         print("End of game, thanks for playing")
     }
     //////////////////////////////////////////////////////
-    ////////////   function create teams   ///////////////
+    ////////////   function create 2 teams   ///////////////
     //////////////////////////////////////////////////////
     func createTeam(item: Int) {
         
@@ -55,7 +55,7 @@ class Game{
         printDescritpion(item: item)
     }
     //////////////////////////////////////////////////////
-    ////////////principal fighting function///////////////
+    ////////////principal fighting function to call func attack and declare winner///////////////
     //////////////////////////////////////////////////////
     func fight(){
         selectTeam()
@@ -64,14 +64,12 @@ class Game{
             teamWhoFight.charactersDisplay()
             print("Select a Character from team : \(teamWhoFight.name) to fight")
             
-            //choice - 1 to recup first element of array
-            //figtherCaracter = teamWhoFight.charactersInTeam[choice-1]
             let userChoice = selectCharacterAlive(team: teamWhoFight)
             figtherCaracter = teamWhoFight.charactersInTeam[userChoice-1]
             print("charcater choosen : \(figtherCaracter.name) from team \(teamWhoFight.name)")
             let randomNumberForChest = Int.random(in: 1 ... 10)
             if figtherCaracter is Magus{
-                heal(indexChest: randomNumberForChest, magus: figtherCaracter as! Magus)
+                PerformHeal(indexChest: randomNumberForChest, magus: figtherCaracter as! Magus)
             }
             else{
                 PerformAttack(indexChest: randomNumberForChest, character: figtherCaracter )
@@ -84,10 +82,9 @@ class Game{
     }
     
     //////////////////////////////////
-    //function to switch to another team
+    //function to switch to another team each round
     //////////////////////////////////
     func switchTeam(){
-        //select other team
         if teamChoice == 1 {
             teamChoice = 2
             teamWhoFight = secondTeam
@@ -100,7 +97,7 @@ class Game{
         print("////////////////////////////////////")
     }
     //////////////////////////////////
-    //function for select team who act
+    //function for select team who act for begin the fight
     //////////////////////////////////
     func selectTeam() {
         //you can select a team who bigin the fight, (maybe random in next version)
@@ -120,7 +117,7 @@ class Game{
         print("Discover the list :")
     }
     //////////////////////////////////////////////////////////
-    //function if an other character is choosen, not magus////
+    //function if an other character is choosen, not magus and prepare attack////
     //////////////////////////////////////////////////////////
     func PerformAttack(indexChest:Int, character: Character){
         var characterToAttack: Character
@@ -128,7 +125,7 @@ class Game{
         teamWhoReceive.charactersDisplay()
         let userChoice = selectCharacterAlive(team: teamWhoReceive)
         characterToAttack = teamWhoReceive.charactersInTeam[userChoice-1]
-        //random number to discover a chest
+        //random number to discover a chest and change the character's weapon
         if  indexChest == 5{
             print("A new weapon is for you \(character.name) : A Mystic weapon who deals 50 damages for all the time")
             character.weapon = Mysticweapon()
@@ -136,15 +133,15 @@ class Game{
         character.attack(characterToAttack: characterToAttack)
     }
     //////////////////////////////////////////////////////////
-    //function if magus is selected////
+    //function if magus is selected and prepare the heal////
     //////////////////////////////////////////////////////////
-    func heal(indexChest:Int, magus: Magus){
+    func PerformHeal(indexChest:Int, magus: Magus){
         var characterToHeal: Character
         print("You can choose a character to hit from oposent team \(teamWhoFight.name):")
         teamWhoFight.charactersDisplay()
         let userChoice = selectCharacterAlive(team: teamWhoFight)
         characterToHeal = teamWhoFight.charactersInTeam[userChoice-1]
-        //random number to discover a chest
+        //random number to discover a chest and change the character's weapon
         if indexChest == 5{
             print("A new weapon is for you \(magus.name) : A Big Stick who heals 50 life points")
             magus.weapon = Bigstick()

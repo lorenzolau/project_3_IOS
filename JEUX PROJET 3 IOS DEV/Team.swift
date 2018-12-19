@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class Team with 2 propriety and functions who displays some details for characters and check if the characters from team are alive
 class Team {
     var name = "" //name of the team
     var charactersInTeam = [Character]()

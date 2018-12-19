@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+//class Stick herited from Weapon
 class Stick: Weapon{
     
     init() {

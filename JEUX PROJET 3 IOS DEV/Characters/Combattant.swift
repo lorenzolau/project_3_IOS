@@ -7,10 +7,10 @@
 //
 
 import Foundation
-
+//class fighter details herited from Character
 class Combattant: Character {
     
     init(name: String) {
-        super.init(name: name, weapon: Sword(), crit: 15,type: "human", maxLife: 100, classType: ClassType.combattant)
+        super.init(name: name, weapon: Sword(), crit: 15,type: "human", maxLife: 100, classType: .figther)
     }
 }
